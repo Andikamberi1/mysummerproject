@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAMEVERSE — The Future of Gaming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════
+       GAMEVERSE — Futuristic Video Game Hub
+       ═══════════════════════════════════════════ */
+
+    :root {
+      --bg-deep: #0a0a0f;
+      --bg-card: rgba(16, 16, 30, 0.85);
+      --bg-card-hover: rgba(24, 24, 48, 0.9);
+      --neon-cyan: #00f0ff;
+      --neon-magenta: #ff00ff;
+      --neon-purple: #b000ff;
+      --neon-green: #00ff88;
+      --neon-yellow: #ffe600;
+      --neon-orange: #ff6b35;
+      --text-primary: #e0e0f0;
+      --text-secondary: #9090b0;
+      --border-glow: rgba(0, 240, 255, 0.25);
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: default;
+    }
+
+    /* ═══ Background: animated grid + particles ═══ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: 0;
+      pointer-events: none;
+      animation: gridPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* ═══ Scanline overlay ═══ */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+      );
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    /* ═══ Floating particles canvas ═══ */
+    #particles-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ═══ Main container ═══ */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ═══ NAV ═══ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.3s, text-shadow 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--neon-cyan);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 64px;
+      position: relative;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border: 1px solid var(--neon-cyan);
+      border-radius: 50px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--neon-cyan);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.2); }
+      50% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 40px rgba(0, 240, 255, 0.2); }
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff 0%, var(--neon-cyan) 50%, var(--neon-magenta) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+    }
+
+    .hero h1 .glitch {
+      display: inline-block;
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.4), 0 0 60px rgba(176, 0, 255, 0.3);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 14px 36px;
+      background: transparent;
+      color: var(--neon-cyan);
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 2px solid var(--neon-cyan);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 240, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.1);
+    }
+
+    /* ═══ Scroll indicator ═══ */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: floatDown 2s ease-in-out infinite;
+    }
+
+    .scroll-arrow {
+      width: 24px;
+      height: 24px;
+      border-right: 2px solid var(--neon-cyan);
+      border-bottom: 2px solid var(--neon-cyan);
+      transform: rotate(45deg);
+    }
+
+    @keyframes floatDown {
+      0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+      50% { transform: translateX(-50%) translateY(12px); opacity: 1; }
+    }
+
+    /* ═══ SECTIONS ═══ */
+    section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--neon-cyan);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding: 4px 12px;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .section-title .accent {
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-desc {
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+
+    /* ═══ FUN FACTS ═══ */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .fact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 32px;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .fact-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-magenta), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .fact-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-glow);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 240, 255, 0.08);
+    }
+
+    .fact-card:hover::before {
+      opacity: 1;
+    }
+
+    .fact-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .fact-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .fact-card p {
+      color: var(--text-secondary);
+      font-size: 0.925rem;
+      line-height: 1.7;
+    }
+
+    .fact-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      position: absolute;
+      bottom: 16px;
+      right: 24px;
+      color: rgba(0, 240, 255, 0.06);
+      pointer-events: none;
+    }
+
+    /* ═══ FAMOUS GAMES ═══ */
+    .games-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .game-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s;
+      backdrop-filter: blur(10px);
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-glow);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 240, 255, 0.05);
+    }
+
+    .game-card-image {
+      height: 180px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      overflow: hidden;
+    }
+
+    .game-card-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, var(--bg-card) 100%);
+    }
+
+    .game-minecraft { background: linear-gradient(135deg, #3b8526, #1a3d0f); }
+    .game-fortnite { background: linear-gradient(135deg, #7b2fff, #3a1078); }
+    .game-roblox { background: linear-gradient(135deg, #d43434, #6b1a1a); }
+    .game-genshin { background: linear-gradient(135deg, #4a90d9, #1a3a6b); }
+    .game-amongus { background: linear-gradient(135deg, #c42021, #5c0e0e); }
+    .game-valorant { background: linear-gradient(135deg, #fa4454, #7a1520); }
+
+    .game-card-body {
+      padding: 24px;
+    }
+
+    .game-card-body h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .game-card-body .game-studio {
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .game-card-body p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .game-stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .game-stat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    .game-stat strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* ═══ GAME CREATION PLATFORMS ═══ */
+    .platforms-create-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .platform-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.4s;
+      backdrop-filter: blur(10px);
+    }
+
+    .platform-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--neon-purple);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(176, 0, 255, 0.1);
+    }
+
+    .platform-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .platform-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .platform-card .platform-level {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .level-beginner { background: rgba(0, 255, 136, 0.1); color: var(--neon-green); border: 1px solid rgba(0, 255, 136, 0.3); }
+    .level-intermediate { background: rgba(255, 230, 0, 0.1); color: var(--neon-yellow); border: 1px solid rgba(255, 230, 0, 0.3); }
+    .level-advanced { background: rgba(255, 107, 53, 0.1); color: var(--neon-orange); border: 1px solid rgba(255, 107, 53, 0.3); }
+    .level-all { background: rgba(0, 240, 255, 0.1); color: var(--neon-cyan); border: 1px solid rgba(0, 240, 255, 0.3); }
+
+    .platform-card p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* ═══ GAMING PLATFORMS ═══ */
+    .platforms-play-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .play-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.4s;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .play-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 20%;
+      right: 20%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .play-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--neon-green);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 136, 0.08);
+    }
+
+    .play-card:hover::after {
+      opacity: 1;
+    }
+
+    .play-card .platform-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .play-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .play-card p {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    /* ═══ STATS BANNER ═══ */
+    .stats-banner {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(176, 0, 255, 0.05));
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 60px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-item .stat-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .stat-item .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ═══ NEWSLETTER ═══ */
+    .newsletter {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 60px 40px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .newsletter h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .newsletter p {
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .newsletter-form input:focus {
+      border-color: var(--neon-cyan);
+    }
+
+    .newsletter-form button {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+    }
+
+    /* ═══ FOOTER ═══ */
+    footer {
+      border-top: 1px solid var(--glass-border);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--neon-cyan);
+    }
+
+    /* ═══ MOBILE NAV (hamburger) ═══ */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: all 0.3s;
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--glass-border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 24px;
+      }
+
+      .btn-primary, .btn-outline {
+        width: 100%;
+        text-align: center;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+    }
+
+    /* ═══ Animations for section reveals ═══ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Particles Canvas ═══ -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ═══ NAV ═══ -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">Gameverse</div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#facts">Fun Facts</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#create">Create</a></li>
+        <li><a href="#play">Play</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">🚀 Next-Gen Gaming</div>
+      <h1>
+        Welcome to<br>
+        <span class="glitch">GAMEVERSE</span>
+      </h1>
+      <p class="hero-subtitle">Explore the universe of video games — from retro classics to next-gen experiences</p>
+      <div class="hero-cta">
+        <a href="#games" class="btn-primary">Explore Games</a>
+        <a href="#create" class="btn-outline">Start Creating</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS BANNER ═══ -->
+  <div class="stats-banner">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">3.2B</span>
+          <span class="stat-label">Gamers Worldwide</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">$184B</span>
+          <span class="stat-label">Industry Value</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Years of Gaming</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">∞</span>
+          <span class="stat-label">Possibilities</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ FUN FACTS ═══ -->
+  <section id="facts">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Did You Know?</div>
+        <h2 class="section-title">Mind-Blowing <span class="accent">Gaming Facts</span></h2>
+        <p class="section-desc">The gaming world is full of surprises. Here are some facts that will blow your mind!</p>
+      </div>
+      <div class="facts-grid">
+        <div class="fact-card reveal">
+          <span class="fact-icon">🕹️</span>
+          <h3>First Video Game Ever</h3>
+          <p>The first video game, <strong>"Tennis for Two"</strong>, was created in 1958 by physicist William Higinbotham. It was played on an oscilloscope — long before Pong!</p>
+          <span class="fact-number">1958</span>
+        </div>
+        <div class="fact-card reveal">
+          <span class="fact-icon">👾</span>
+          <h3>Pac-Man's Original Name</h3>
+          <p>Pac-Man was originally called <strong>"Puck-Man"</strong> in Japan. The name was changed for the US release because vandals could easily scratch the "P" into an "F"!</p>
+          <span class="fact-number">1980</span>
+        </div>
+        <div class="fact-card reveal">
+          <span class="fact-icon">💰</span>
+          <h3>GTA V Made History</h3>
+          <p>Grand Theft Auto V earned <strong>$1 billion</strong> in just 3 days after launch — making it the fastest-selling entertainment product in history at the time.</p>
+          <span class="fact-number">$1B</span>
+        </div>
+        <div class="fact-card reveal">
+          <span class="fact-icon">🧠</span>
+          <h3>Gamers Are Smarter</h3>
+          <p>Studies show that playing video games can <strong>increase gray matter</strong> in the brain and improve problem-solving skills, memory, and hand-eye coordination.</p>
+          <span class="fact-number">+GM</span>
+        </div>
+        <div class="fact-card reveal">
+          <span class="fact-icon">🎮</span>
+          <h3>Minecraft's Insane Sales</h3>
+          <p>Minecraft is the <strong>best-selling video game</strong> of all time with over <strong>300 million copies</strong> sold worldwide — more than any other game in history.</p>
+          <span class="fact-number">300M</span>
+        </div>
+        <div class="fact-card reveal">
+          <span class="fact-icon">🏆</span>
+          <h3>E-Sports Is Massive</h3>
+          <p>The e-sports industry is valued at over <strong>$1.5 billion</strong> and the biggest tournaments like <strong>The International</strong> have prize pools exceeding $40 million!</p>
+          <span class="fact-number">$40M</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAMOUS GAMES ═══ -->
+  <section id="games">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Legendary Titles</div>
+        <h2 class="section-title">Games That <span class="accent">Defined Generations</span></h2>
+        <p class="section-desc">From pixelated classics to massive open worlds — these games changed everything.</p>
+      </div>
+      <div class="games-showcase">
+        <!-- Minecraft -->
+        <div class="game-card reveal">
+          <div class="game-card-image game-minecraft">⛏️</div>
+          <div class="game-card-body">
+            <h3>Minecraft</h3>
+            <div class="game-studio">Mojang Studios</div>
+            <p>The ultimate sandbox game where you can build, explore, and survive in an infinite block-based world. No rules — just creativity.</p>
+            <div class="game-stats">
+              <div class="game-stat"><strong>300M+</strong> copies sold</div>
+              <div class="game-stat"><strong>2011</strong> released</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fortnite -->
+        <div class="game-card reveal">
+          <div class="game-card-image game-fortnite">🪂</div>
+          <div class="game-card-body">
+            <h3>Fortnite</h3>
+            <div class="game-studio">Epic Games</div>
+            <p>More than just a battle royale — Fortnite is a cultural phenomenon with live concerts, creative mode, and constant updates.</p>
+            <div class="game-stats">
+              <div class="game-stat"><strong>650M+</strong> players</div>
+              <div class="game-stat"><strong>2017</strong> released</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Roblox -->
+        <div class="game-card reveal">
+          <div class="game-card-image game-roblox">🎯</div>
+          <div class="game-card-body">
+            <h3>Roblox</h3>
+            <div class="game-studio">Roblox Corporation</div>
+            <p>A platform where players create and share their own games. Millions of user-created experiences — from obstacle courses to RPGs!</p>
+            <div class="game-stats">
+              <div class="game-stat"><strong>70M+</strong> daily users</div>
+              <div class="game-stat"><strong>2006</strong> launched</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Genshin Impact -->
+        <div class="game-card reveal">
+          <div class="game-card-image game-genshin">✨</div>
+          <div class="game-card-body">
+            <h3>Genshin Impact</h3>
+            <div class="game-studio">HoYoverse</div>
+            <p>A breathtaking open-world action RPG with an anime art style, elemental combat system, and a massive world to explore — for free!</p>
+            <div class="game-stats">
+              <div class="game-stat"><strong>$4B+</strong> revenue</div>
+              <div class="game-stat"><strong>2020</strong> released</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Among Us -->
+        <div class="game-card reveal">
+          <div class="game-card-image game-amongus">🚀</div>
+          <div class="game-card-body">
+            <h3>Among Us</h3>
+            <div class="game-studio">Innersloth</div>
+            <p>A social deduction game where crewmates work together to complete tasks while impostors secretly sabotage — and eliminate — the crew.</p>
+            <div class="game-stats">
+              <div class="game-stat"><strong>500M+</strong> players</div>
+              <div class="game-stat"><strong>2018</strong> released</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Valorant -->
+        <div class="game-card reveal">
+          <div class="game-card-image game-valorant">🔫</div>
+          <div class="game-card-body">
+            <h3>Valorant</h3>
+            <div class="game-studio">Riot Games</div>
+            <p>A tactical 5v5 shooter where precise gunplay meets unique agent abilities. One of the fastest-growing competitive games in the world.</p>
+            <div class="game-stats">
+              <div class="game-stat"><strong>28M+</strong> monthly players</div>
+              <div class="game-stat"><strong>2020</strong> released</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GAME CREATION PLATFORMS ═══ -->
+  <section id="create">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Build Your World</div>
+        <h2 class="section-title">Platforms to <span class="accent">Create Games</span></h2>
+        <p class="section-desc">Want to make your own game? These platforms make it easy — no matter your skill level!</p>
+      </div>
+      <div class="platforms-create-grid">
+        <div class="platform-card reveal">
+          <span class="platform-icon">🎮</span>
+          <h3>Unity</h3>
+          <span class="platform-level level-intermediate">Intermediate</span>
+          <p>The most popular game engine in the world. Used to create hits like Hollow Knight, Cuphead, and Pokémon GO. Free for beginners!</p>
+        </div>
+        <div class="platform-card reveal">
+          <span class="platform-icon">🏗️</span>
+          <h3>Unreal Engine 5</h3>
+          <span class="platform-level level-advanced">Advanced</span>
+          <p>Industry-leading graphics powering games like Fortnite and Gears of War. Features Blueprint visual scripting — no coding needed!</p>
+        </div>
+        <div class="platform-card reveal">
+          <span class="platform-icon">🔧</span>
+          <h3>Godot</h3>
+          <span class="platform-level level-beginner">Beginner-Friendly</span>
+          <p>A completely free and open-source game engine. Lightweight, easy to learn, and perfect for 2D and 3D indie games.</p>
+        </div>
+        <div class="platform-card reveal">
+          <span class="platform-icon">🧱</span>
+          <h3>Roblox Studio</h3>
+          <span class="platform-level level-beginner">Beginner-Friendly</span>
+          <p>Build and publish games directly to millions of players. Uses Lua scripting — one of the easiest languages to learn!</p>
+        </div>
+        <div class="platform-card reveal">
+          <span class="platform-icon">📱</span>
+          <h3>Scratch</h3>
+          <span class="platform-level level-beginner">Super Beginner</span>
+          <p>Created by MIT, Scratch uses drag-and-drop blocks to teach coding. Perfect for kids and absolute beginners who want to start making games today!</p>
+        </div>
+        <div class="platform-card reveal">
+          <span class="platform-icon">🌐</span>
+          <h3>GameMaker</h3>
+          <span class="platform-level level-intermediate">Intermediate</span>
+          <p>Used to create indie hits like Undertale and Hyper Light Drifter. Features a visual drag-and-drop system alongside its own scripting language.</p>
+        </div>
+        <div class="platform-card reveal">
+          <span class="platform-icon">🎨</span>
+          <h3>RPG Maker</h3>
+          <span class="platform-level level-beginner">Beginner-Friendly</span>
+          <p>Specialized in making classic JRPG-style games with pre-built assets, turn-based combat, and map editors. No programming required!</p>
+        </div>
+        <div class="platform-card reveal">
+          <span class="platform-icon">⚡</span>
+          <h3>Construct 3</h3>
+          <span class="platform-level level-beginner">Beginner-Friendly</span>
+          <p>Runs entirely in your browser! Create 2D games with an intuitive drag-and-drop event system. Export to HTML5, mobile, and desktop.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GAMING PLATFORMS ═══ -->
+  <section id="play">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Where to Play</div>
+        <h2 class="section-title">Gaming <span class="accent">Platforms</span></h2>
+        <p class="section-desc">The best places to discover, buy, and play games across every device.</p>
+      </div>
+      <div class="platforms-play-grid">
+        <div class="play-card reveal">
+          <span class="platform-emoji">🚂</span>
+          <h3>Steam</h3>
+          <p>The largest PC gaming platform with 50,000+ games, frequent sales, and community features.</p>
+        </div>
+        <div class="play-card reveal">
+          <span class="platform-emoji">🏰</span>
+          <h3>Epic Games Store</h3>
+          <p>Weekly free games, exclusive titles, and Unreal Engine integration for creators.</p>
+        </div>
+        <div class="play-card reveal">
+          <span class="platform-emoji">🎮</span>
+          <h3>Xbox Game Pass</h3>
+          <p>Netflix for games! Hundreds of titles for one monthly fee, including day-one releases.</p>
+        </div>
+        <div class="play-card reveal">
+          <span class="platform-emoji">🎮</span>
+          <h3>PlayStation Plus</h3>
+          <p>Online multiplayer, monthly free games, and a growing catalog of PS4 & PS5 titles.</p>
+        </div>
+        <div class="play-card reveal">
+          <span class="platform-emoji">🕹️</span>
+          <h3>Nintendo eShop</h3>
+          <p>Home to Mario, Zelda, Pokémon, and thousands of indie gems on the Nintendo Switch.</p>
+        </div>
+        <div class="play-card reveal">
+          <span class="platform-emoji">📱</span>
+          <h3>Mobile Gaming</h3>
+          <p>Google Play & App Store offer millions of games — from puzzle games to full AAA ports.</p>
+        </div>
+        <div class="play-card reveal">
+          <span class="platform-emoji">☁️</span>
+          <h3>Cloud Gaming</h3>
+          <p>Services like GeForce NOW, Xbox Cloud, and Luna let you stream games without a powerful PC!</p>
+        </div>
+        <div class="play-card reveal">
+          <span class="platform-emoji">💻</span>
+          <h3>itch.io</h3>
+          <p>An indie game marketplace with unique experimental titles you won't find anywhere else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NEWSLETTER ═══ -->
+  <section>
+    <div class="container">
+      <div class="newsletter reveal">
+        <h2>Join the Gameverse</h2>
+        <p>Get weekly updates on the latest game releases, industry news, and exclusive content.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container">
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#facts">Fun Facts</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#create">Create</a></li>
+        <li><a href="#play">Play</a></li>
+      </ul>
+      <p>&copy; 2026 Gameverse. Built for gamers, by gamers. 🎮</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ═══════════════════════════════════════════
+       PARTICLE SYSTEM
+       ═══════════════════════════════════════════ */
+    (function() {
+      var canvas = document.getElementById('particles-canvas');
+      var ctx = canvas.getContext('2d');
+      var particles = [];
+      var mouseX = -1000, mouseY = -1000;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      for (var i = 0; i < 80; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          size: Math.random() * 2 + 0.5,
+          color: ['#00f0ff', '#ff00ff', '#b000ff', '#ffffff'][Math.floor(Math.random() * 4)]
+        });
+      }
+
+      document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          if (p.x < 0) p.x = canvas.width;
+          if (p.x > canvas.width) p.x = 0;
+          if (p.y < 0) p.y = canvas.height;
+          if (p.y > canvas.height) p.y = 0;
+
+          // Mouse attraction
+          var dx = mouseX - p.x;
+          var dy = mouseY - p.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150 && dist > 0) {
+            var force = 0.015;
+            p.vx += (dx / dist) * force;
+            p.vy += (dy / dist) * force;
+            p.vx = Math.max(-1.5, Math.min(1.5, p.vx));
+            p.vy = Math.max(-1.5, Math.min(1.5, p.vy));
+          }
+
+          // Damping
+          p.vx *= 0.999;
+          p.vy *= 0.999;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = 0.6;
+          ctx.fill();
+
+          // Draw connections
+          for (var j = i + 1; j < particles.length; j++) {
+            var p2 = particles[j];
+            var dx2 = p.x - p2.x;
+            var dy2 = p.y - p2.y;
+            var dist2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+            if (dist2 < 100) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = p.color;
+              ctx.globalAlpha = 0.08 * (1 - dist2 / 100);
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(animate);
+      }
+      animate();
+
+      /* ═══════════════════════════════════════════
+         MOBILE NAV TOGGLE
+         ═══════════════════════════════════════════ */
+      var hamburger = document.getElementById('hamburger');
+      var navLinks = document.getElementById('navLinks');
+
+      hamburger.addEventListener('click', function() {
+        navLinks.classList.toggle('open');
+      });
+
+      var links = navLinks.querySelectorAll('a');
+      for (var k = 0; k < links.length; k++) {
+        links[k].addEventListener('click', function() {
+          navLinks.classList.remove('open');
+        });
+      }
+
+      /* ═══════════════════════════════════════════
+         SCROLL REVEAL
+         ═══════════════════════════════════════════ */
+      var reveals = document.querySelectorAll('.reveal');
+
+      function checkReveal() {
+        var windowHeight = window.innerHeight;
+        for (var r = 0; r < reveals.length; r++) {
+          var el = reveals[r];
+          var top = el.getBoundingClientRect().top;
+          if (top < windowHeight - 80) {
+            el.classList.add('visible');
+          }
+        }
+      }
+      window.addEventListener('scroll', checkReveal);
+      checkReveal();
+
+      /* ═══════════════════════════════════════════
+         NEWSLETTER FORM
+         ═══════════════════════════════════════════ */
+      var form = document.getElementById('newsletterForm');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var input = form.querySelector('input');
+        if (input.value.trim()) {
+          input.value = '';
+          input.placeholder = '✓ You\'re in! Welcome to Gameverse.';
+          setTimeout(function() {
+            input.placeholder = 'Enter your email';
+          }, 3000);
+        }
+      });
+
+      /* ═══════════════════════════════════════════
+         SMOOTH SCROLL FOR SAFARI
+         ═══════════════════════════════════════════ */
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
