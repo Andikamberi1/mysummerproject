@@ -12,7 +12,7 @@
   <!-- ═══ AUTH GATE (login / register) ═══ -->
   <div id="auth-gate">
     <div class="auth-card">
-      <div class="auth-logo">GAMEVERSE</div>
+      <div class="auth-logo" id="auth-title">GAMEVERSE</div>
       <p class="auth-subtitle">Sign in to enter the universe</p>
       <div class="auth-error" id="auth-error"></div>
       <form class="auth-form" id="auth-form" autocomplete="off">
@@ -32,7 +32,7 @@
       </form>
       <p class="auth-switch">
         <span id="auth-switch-text">Don't have an account?</span>
-        <a id="auth-switch-link">Register</a>
+        <a id="auth-switch-link" onclick="window._gameverseToggleAuth()" style="cursor:pointer">Register</a>
       </p>
     </div>
   </div>

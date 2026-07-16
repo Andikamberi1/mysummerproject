@@ -837,15 +837,21 @@
     // RPG starts after auth — see showMainContent()
   }
 
+  // Wrap showMainContent BEFORE auth fires — avoids race condition
   var rpgStarted = false;
   var origShowMainContent = showMainContent;
   showMainContent = function () {
     origShowMainContent();
     if (!rpgStarted) {
       rpgStarted = true;
-      // Small delay so the DOM is painted before canvas sizing
       setTimeout(initRPG, 100);
     }
+  };
+
+  // Expose toggle for inline onclick (avoids addEventListener issues)
+  window._gameverseToggleAuth = function () {
+    setAuthMode(!isLoginMode);
+    authForm.reset();
   };
 
   // Bootstrap: load Supabase → init auth → then init everything else
