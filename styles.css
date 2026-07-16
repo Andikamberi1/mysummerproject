@@ -685,21 +685,27 @@ section {
   height: 24px;
   margin-bottom: 8px;
   display: block;
-  filter: brightness(0) invert(1);
-  opacity: 0.7;
+  opacity: 0.9;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  padding: 2px 8px;
+  object-fit: contain;
 }
 
 .platform-logo {
   height: 40px;
   margin-bottom: 12px;
-  filter: brightness(0) invert(1);
-  opacity: 0.6;
+  opacity: 0.8;
   transition: opacity 0.3s;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  padding: 6px 12px;
+  object-fit: contain;
 }
 
 .platform-card:hover .platform-logo,
 .play-card:hover .platform-logo {
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .game-card-body p {
