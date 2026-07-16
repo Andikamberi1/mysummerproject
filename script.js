@@ -18,77 +18,48 @@
   /* ═══════════════════════════════════════════
      DOM refs
      ═══════════════════════════════════════════ */
-  var authGate = document.getElementById('auth-gate');
+  var authGate    = document.getElementById('auth-gate');
   var mainContent = document.getElementById('main-content');
-  var authError = document.getElementById('auth-error');
-  var authForm = document.getElementById('auth-form');
-  var authTitle = document.getElementById('auth-title');
-  var authSubmitBtn = document.getElementById('auth-submit-btn');
-  var authSwitchLink = document.getElementById('auth-switch-link');
-  var authSwitchText = document.getElementById('auth-switch-text');
-  var usernameField = document.getElementById('username-field');
-  var isLoginMode = true;
+  var loginCard   = document.getElementById('login-card');
+  var regCard     = document.getElementById('register-card');
+  var loginError  = document.getElementById('login-error');
+  var regError    = document.getElementById('register-error');
 
-  /* ═══════════════════════════════════════════
-     MODE TOGGLE (login ↔ register)
-     ═══════════════════════════════════════════ */
-  function setAuthMode(login) {
-    isLoginMode = login;
-    if (login) {
-      authTitle.textContent = 'SIGN IN';
-      authSubmitBtn.textContent = 'Login';
-      authSwitchText.textContent = "Don't have an account?";
-      authSwitchLink.textContent = 'Register';
-      if (usernameField) usernameField.style.display = 'none';
-    } else {
-      authTitle.textContent = 'CREATE ACCOUNT';
-      authSubmitBtn.textContent = 'Register';
-      authSwitchText.textContent = 'Already have an account?';
-      authSwitchLink.textContent = 'Sign In';
-      if (usernameField) usernameField.style.display = 'block';
-    }
-    hideAuthError();
+  function showCardError(card, msg) {
+    var el = card === 'login' ? loginError : regError;
+    el.textContent = msg;
+    el.classList.add('show');
   }
 
-  function showAuthError(msg) {
-    authError.textContent = msg;
-    authError.classList.add('show');
-  }
-
-  function hideAuthError() {
-    authError.classList.remove('show');
+  function hideCardErrors() {
+    loginError.classList.remove('show');
+    regError.classList.remove('show');
   }
 
   /* ═══════════════════════════════════════════
      AUTH ACTIONS
      ═══════════════════════════════════════════ */
   function login(email, password) {
-    if (!supabase) return showAuthError('Auth system not loaded. Check your Supabase config.');
+    if (!supabase) return showCardError('login', 'Auth system not loaded.');
     supabase.auth.signInWithPassword({ email: email, password: password })
       .then(function (res) {
-        if (res.error) {
-          showAuthError(res.error.message);
-        }
-        // onAuthStateChange will fire
+        if (res.error) showCardError('login', res.error.message);
       });
   }
 
-  function register(email, password, username) {
-    if (!supabase) return showAuthError('Auth system not loaded. Check your Supabase config.');
-    var meta = {};
-    if (username) meta.full_name = username;
+  function register(fullName, email, password) {
+    if (!supabase) return showCardError('register', 'Auth system not loaded.');
     supabase.auth.signUp({
       email: email,
       password: password,
-      options: { data: meta }
+      options: { data: { full_name: fullName } }
     }).then(function (res) {
       if (res.error) {
-        showAuthError(res.error.message);
+        showCardError('register', res.error.message);
       } else if (res.data.user && res.data.user.identities && res.data.user.identities.length === 0) {
-        showAuthError('An account with this email already exists.');
+        showCardError('register', 'Account with this email already exists.');
       } else {
-        showAuthError('Check your email for a confirmation link! (If email confirmation is enabled)');
-        // Some Supabase projects auto-confirm — the onAuthStateChange will fire
+        showCardError('register', 'Account created! Check your email to confirm, then sign in.');
       }
     });
   }
@@ -99,66 +70,64 @@
       currentUser = null;
       hideMainContent();
       showAuthGate();
-      authForm.reset();
-      setAuthMode(true);
+      document.getElementById('login-form').reset();
+      document.getElementById('register-form').reset();
+      loginCard.style.display = '';
+      regCard.style.display = 'none';
+      hideCardErrors();
     });
   }
 
   /* ═══════════════════════════════════════════
      GATE TOGGLES
      ═══════════════════════════════════════════ */
-  function hideAuthGate() {
-    authGate.classList.add('hidden');
-  }
-
-  function showAuthGate() {
-    authGate.classList.remove('hidden');
-  }
-
-  function showMainContent() {
-    mainContent.classList.add('visible');
-  }
-
-  function hideMainContent() {
-    mainContent.classList.remove('visible');
-  }
+  function hideAuthGate() { authGate.classList.add('hidden'); }
+  function showAuthGate() { authGate.classList.remove('hidden'); }
+  function showMainContent() { mainContent.classList.add('visible'); }
+  function hideMainContent() { mainContent.classList.remove('visible'); }
 
   function updateUserUI(user) {
-    var emailEl = document.getElementById('nav-user-email');
-    if (emailEl && user) {
-      emailEl.textContent = user.email;
-    }
+    var el = document.getElementById('nav-user-email');
+    if (el && user) el.textContent = user.email;
   }
 
   /* ═══════════════════════════════════════════
-     AUTH FORM HANDLER
+     FORM HANDLERS — two independent forms
      ═══════════════════════════════════════════ */
-  authForm.addEventListener('submit', function (e) {
+  document.getElementById('login-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    hideAuthError();
-
-    var email = document.getElementById('auth-email').value.trim();
-    var password = document.getElementById('auth-password').value.trim();
-    var username = document.getElementById('auth-username')
-      ? document.getElementById('auth-username').value.trim()
-      : '';
-
-    if (!email || !password) {
-      showAuthError('Please fill in all fields.');
-      return;
-    }
-
-    if (isLoginMode) {
-      login(email, password);
-    } else {
-      register(email, password, username);
-    }
+    hideCardErrors();
+    var email = document.getElementById('login-email').value.trim();
+    var pass  = document.getElementById('login-password').value.trim();
+    if (!email || !pass) { showCardError('login', 'Please fill in all fields.'); return; }
+    login(email, pass);
   });
 
-  authSwitchLink.addEventListener('click', function (e) {
+  document.getElementById('register-form').addEventListener('submit', function (e) {
     e.preventDefault();
-    setAuthMode(!isLoginMode);
-    authForm.reset();
+    hideCardErrors();
+    var name  = document.getElementById('reg-fullname').value.trim();
+    var email = document.getElementById('reg-email').value.trim();
+    var pass  = document.getElementById('reg-password').value.trim();
+    if (!email || !pass) { showCardError('register', 'Please fill in all fields.'); return; }
+    register(name, email, pass);
+  });
+
+  // Card switching
+  document.getElementById('show-register-link').addEventListener('click', function (e) {
+    e.preventDefault();
+    hideCardErrors();
+    loginCard.style.display = 'none';
+    regCard.style.display = '';
+    document.getElementById('login-form').reset();
+  });
+
+  document.getElementById('show-login-link').addEventListener('click', function (e) {
+    e.preventDefault();
+    hideCardErrors();
+    regCard.style.display = 'none';
+    loginCard.style.display = '';
+    document.getElementById('register-form').reset();
   });
 
   /* ═══════════════════════════════════════════

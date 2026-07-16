@@ -9,31 +9,38 @@
 </head>
 <body>
 
-  <!-- ═══ AUTH GATE (login / register) ═══ -->
+  <!-- ═══ AUTH GATE ═══ -->
   <div id="auth-gate">
-    <div class="auth-card">
-      <div class="auth-logo" id="auth-title">GAMEVERSE</div>
+    <!-- LOGIN CARD -->
+    <div class="auth-card" id="login-card">
+      <div class="auth-logo">GAMEVERSE</div>
       <p class="auth-subtitle">Sign in to enter the universe</p>
-      <div class="auth-error" id="auth-error"></div>
-      <form class="auth-form" id="auth-form" autocomplete="off">
-        <div id="username-field" style="display:none;">
-          <label for="auth-username">Username</label>
-          <input type="text" id="auth-username" placeholder="Your username" autocomplete="off">
-        </div>
-        <div>
-          <label for="auth-email">Email</label>
-          <input type="email" id="auth-email" placeholder="you@example.com" required autocomplete="off">
-        </div>
-        <div>
-          <label for="auth-password">Password</label>
-          <input type="password" id="auth-password" placeholder="••••••••" required autocomplete="off">
-        </div>
-        <button type="submit" class="auth-btn" id="auth-submit-btn">Login</button>
+      <div class="auth-error" id="login-error"></div>
+      <form id="login-form" autocomplete="off">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" placeholder="you@example.com" required autocomplete="off">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="off">
+        <button type="submit" class="auth-btn">Login</button>
       </form>
-      <p class="auth-switch">
-        <span id="auth-switch-text">Don't have an account?</span>
-        <a id="auth-switch-link" onclick="window._gameverseToggleAuth()" style="cursor:pointer">Register</a>
-      </p>
+      <p class="auth-switch">Don't have an account? <a id="show-register-link">Register here</a></p>
+    </div>
+
+    <!-- REGISTER CARD (hidden by default) -->
+    <div class="auth-card" id="register-card" style="display:none;">
+      <div class="auth-logo">GAMEVERSE</div>
+      <p class="auth-subtitle">Create your account</p>
+      <div class="auth-error" id="register-error"></div>
+      <form id="register-form" autocomplete="off">
+        <label for="reg-fullname">Full Name</label>
+        <input type="text" id="reg-fullname" placeholder="Your full name" autocomplete="off">
+        <label for="reg-email">Email</label>
+        <input type="email" id="reg-email" placeholder="you@example.com" required autocomplete="off">
+        <label for="reg-password">Password</label>
+        <input type="password" id="reg-password" placeholder="••••••••" required autocomplete="off">
+        <button type="submit" class="auth-btn">Create Account</button>
+      </form>
+      <p class="auth-switch">Already have an account? <a id="show-login-link">Sign in</a></p>
     </div>
   </div>
 
