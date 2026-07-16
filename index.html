@@ -1,175 +1,175 @@
-1|<!DOCTYPE html>
-2|<html lang="en">
-3|<head>
-4|  <meta charset="UTF-8">
-5|  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-6|  <title>GAMEVERSE — The Future of Gaming</title>
-7|  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-8|  <link rel="stylesheet" href="styles.css">
-9|</head>
-10|<body>
-11|
-12|  <!-- ═══ AUTH GATE ═══ -->
-13|  <div id="auth-gate">
-14|    <!-- LOGIN CARD -->
-15|    <div class="auth-card" id="login-card">
-16|      <div class="auth-logo">GAMEVERSE</div>
-17|      <p class="auth-subtitle">Sign in to enter the universe</p>
-18|      <div class="auth-error" id="login-error"></div>
-19|      <form id="login-form" autocomplete="off">
-20|        <label for="login-email">Email</label>
-21|        <input type="email" id="login-email" placeholder="you@example.com" required autocomplete="off">
-22|        <label for="login-password">Password</label>
-23|        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="off">
-24|        <button type="submit" class="auth-btn">Login</button>
-25|      </form>
-26|      <p class="auth-switch">Don't have an account? <a id="show-register-link">Register here</a></p>
-27|    </div>
-28|
-29|    <!-- REGISTER CARD (hidden by default) -->
-30|    <div class="auth-card" id="register-card" style="display:none;">
-31|      <div class="auth-logo">GAMEVERSE</div>
-32|      <p class="auth-subtitle">Create your account</p>
-33|      <div class="auth-error" id="register-error"></div>
-34|      <form id="register-form" autocomplete="off">
-35|        <label for="reg-fullname">Full Name</label>
-36|        <input type="text" id="reg-fullname" placeholder="Your full name" autocomplete="off">
-37|        <label for="reg-email">Email</label>
-38|        <input type="email" id="reg-email" placeholder="you@example.com" required autocomplete="off">
-39|        <label for="reg-password">Password</label>
-40|        <input type="password" id="reg-password" placeholder="••••••••" required autocomplete="off">
-41|        <button type="submit" class="auth-btn">Create Account</button>
-42|      </form>
-43|      <p class="auth-switch">Already have an account? <a id="show-login-link">Sign in</a></p>
-44|    </div>
-45|  </div>
-46|
-47|  <!-- ═══ MAIN CONTENT (hidden until authenticated) ═══ -->
-48|  <div id="main-content">
-49|
-50|    <!-- ═══ Particles Canvas ═══ -->
-51|    <canvas id="particles-canvas"></canvas>
-52|
-53|    <!-- ═══ NAV ═══ -->
-54|    <nav>
-55|      <div class="nav-inner">
-56|        <div class="nav-logo">Gameverse</div>
-57|        <button class="hamburger" id="hamburger" aria-label="Menu">
-58|          <span></span><span></span><span></span>
-59|        </button>
-60|        <ul class="nav-links" id="navLinks">
-61|          <li><a href="#home">Home</a></li>
-62|          <li><a href="#facts">Fun Facts</a></li>
-63|          <li><a href="#games">Games</a></li>
-64|          <li><a href="#create">Create</a></li>
-65|          <li><a href="#play">Play</a></li>
-66|          <li><a href="#rpg-section">Mini RPG</a></li>
-67|          <li>
-68|            <span class="nav-user-email" id="nav-user-email"></span>
-69|            <button class="btn-logout" id="btn-logout">Logout</button>
-70|          </li>
-71|        </ul>
-72|      </div>
-73|    </nav>
-74|
-75|    <!-- ═══ HERO ═══ -->
-76|    <section class="hero" id="home">
-77|      <div class="hero-content">
-78|        <div class="hero-badge">🚀 Next-Gen Gaming</div>
-79|        <h1>Welcome to<br>GAMEVERSE</h1>
-80|        <p class="hero-subtitle">Explore the universe of video games — from retro classics to next-gen experiences</p>
-81|        <div class="hero-cta">
-82|          <a href="#games" class="btn-primary">Explore Games</a>
-83|          <a href="#create" class="btn-outline">Start Creating</a>
-84|        </div>
-85|      </div>
-86|      <div class="scroll-indicator">
-87|        <span>Scroll</span>
-88|        <div class="scroll-arrow"></div>
-89|      </div>
-90|    </section>
-91|
-92|    <!-- ═══ STATS BANNER ═══ -->
-93|    <div class="stats-banner">
-94|      <div class="container">
-95|        <div class="stats-grid">
-96|          <div class="stat-item">
-97|            <span class="stat-number">3.2B</span>
-98|            <span class="stat-label">Gamers Worldwide</span>
-99|          </div>
-100|          <div class="stat-item">
-101|            <span class="stat-number">$184B</span>
-102|            <span class="stat-label">Industry Value</span>
-103|          </div>
-104|          <div class="stat-item">
-105|            <span class="stat-number">50+</span>
-106|            <span class="stat-label">Years of Gaming</span>
-107|          </div>
-108|          <div class="stat-item">
-109|            <span class="stat-number">∞</span>
-110|            <span class="stat-label">Possibilities</span>
-111|          </div>
-112|        </div>
-113|      </div>
-114|    </div>
-115|
-116|    <!-- ═══ FUN FACTS ═══ -->
-117|    <section id="facts">
-118|      <div class="container">
-119|        <div class="section-header reveal">
-120|          <div class="section-tag">Did You Know?</div>
-121|          <h2 class="section-title">Mind-Blowing <span class="accent">Gaming Facts</span></h2>
-122|          <p class="section-desc">The gaming world is full of surprises. Here are some facts that will blow your mind!</p>
-123|        </div>
-124|        <div class="facts-grid">
-125|          <div class="fact-card reveal">
-126|            <span class="fact-icon">🕹️</span>
-127|            <h3>First Video Game Ever</h3>
-128|            <p>The first video game, <strong>"Tennis for Two"</strong>, was created in 1958 by physicist William Higinbotham. It was played on an oscilloscope — long before Pong!</p>
-129|            <span class="fact-number">1958</span>
-130|          </div>
-131|          <div class="fact-card reveal">
-132|            <span class="fact-icon">👾</span>
-133|            <h3>Pac-Man's Original Name</h3>
-134|            <p>Pac-Man was originally called <strong>"Puck-Man"</strong> in Japan. The name was changed for the US release because vandals could easily scratch the "P" into an "F"!</p>
-135|            <span class="fact-number">1980</span>
-136|          </div>
-137|          <div class="fact-card reveal">
-138|            <span class="fact-icon">💰</span>
-139|            <h3>GTA V Made History</h3>
-140|            <p>Grand Theft Auto V earned <strong>$1 billion</strong> in just 3 days after launch — making it the fastest-selling entertainment product in history at the time.</p>
-141|            <span class="fact-number">$1B</span>
-142|          </div>
-143|          <div class="fact-card reveal">
-144|            <span class="fact-icon">🧠</span>
-145|            <h3>Gamers Are Smarter</h3>
-146|            <p>Studies show that playing video games can <strong>increase gray matter</strong> in the brain and improve problem-solving skills, memory, and hand-eye coordination.</p>
-147|            <span class="fact-number">+GM</span>
-148|          </div>
-149|          <div class="fact-card reveal">
-150|            <span class="fact-icon">🎮</span>
-151|            <h3>Minecraft's Insane Sales</h3>
-152|            <p>Minecraft is the <strong>best-selling video game</strong> of all time with over <strong>300 million copies</strong> sold worldwide — more than any other game in history.</p>
-153|            <span class="fact-number">300M</span>
-154|          </div>
-155|          <div class="fact-card reveal">
-156|            <span class="fact-icon">🏆</span>
-157|            <h3>E-Sports Is Massive</h3>
-158|            <p>The e-sports industry is valued at over <strong>$1.5 billion</strong> and the biggest tournaments like <strong>The International</strong> have prize pools exceeding $40 million!</p>
-159|            <span class="fact-number">$40M</span>
-160|          </div>
-161|        </div>
-162|      </div>
-163|    </section>
-164|
-165|    <!-- ═══ FAMOUS GAMES ═══ -->
-166|    <section id="games">
-167|      <div class="container">
-168|        <div class="section-header reveal">
-169|          <div class="section-tag">Legendary Titles</div>
-170|          <h2 class="section-title">Games That <span class="accent">Defined Generations</span></h2>
-171|          <p class="section-desc">From pixelated classics to massive open worlds — these games changed everything.</p>
-172|        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAMEVERSE — The Future of Gaming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ═══ AUTH GATE ═══ -->
+  <div id="auth-gate">
+    <!-- LOGIN CARD -->
+    <div class="auth-card" id="login-card">
+      <div class="auth-logo">GAMEVERSE</div>
+      <p class="auth-subtitle">Sign in to enter the universe</p>
+      <div class="auth-error" id="login-error"></div>
+      <form id="login-form" autocomplete="off">
+        <label for="login-email">Email</label>
+        <input type="email" id="login-email" placeholder="you@example.com" required autocomplete="off">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="off">
+        <button type="submit" class="auth-btn">Login</button>
+      </form>
+      <p class="auth-switch">Don't have an account? <a id="show-register-link">Register here</a></p>
+    </div>
+
+    <!-- REGISTER CARD (hidden by default) -->
+    <div class="auth-card" id="register-card" style="display:none;">
+      <div class="auth-logo">GAMEVERSE</div>
+      <p class="auth-subtitle">Create your account</p>
+      <div class="auth-error" id="register-error"></div>
+      <form id="register-form" autocomplete="off">
+        <label for="reg-fullname">Full Name</label>
+        <input type="text" id="reg-fullname" placeholder="Your full name" autocomplete="off">
+        <label for="reg-email">Email</label>
+        <input type="email" id="reg-email" placeholder="you@example.com" required autocomplete="off">
+        <label for="reg-password">Password</label>
+        <input type="password" id="reg-password" placeholder="••••••••" required autocomplete="off">
+        <button type="submit" class="auth-btn">Create Account</button>
+      </form>
+      <p class="auth-switch">Already have an account? <a id="show-login-link">Sign in</a></p>
+    </div>
+  </div>
+
+  <!-- ═══ MAIN CONTENT (hidden until authenticated) ═══ -->
+  <div id="main-content">
+
+    <!-- ═══ Particles Canvas ═══ -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- ═══ NAV ═══ -->
+    <nav>
+      <div class="nav-inner">
+        <div class="nav-logo">Gameverse</div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#facts">Fun Facts</a></li>
+          <li><a href="#games">Games</a></li>
+          <li><a href="#create">Create</a></li>
+          <li><a href="#play">Play</a></li>
+          <li><a href="#rpg-section">Mini RPG</a></li>
+          <li>
+            <span class="nav-user-email" id="nav-user-email"></span>
+            <button class="btn-logout" id="btn-logout">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-badge">🚀 Next-Gen Gaming</div>
+        <h1>Welcome to<br>GAMEVERSE</h1>
+        <p class="hero-subtitle">Explore the universe of video games — from retro classics to next-gen experiences</p>
+        <div class="hero-cta">
+          <a href="#games" class="btn-primary">Explore Games</a>
+          <a href="#create" class="btn-outline">Start Creating</a>
+        </div>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ═══ STATS BANNER ═══ -->
+    <div class="stats-banner">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">3.2B</span>
+            <span class="stat-label">Gamers Worldwide</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">$184B</span>
+            <span class="stat-label">Industry Value</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Years of Gaming</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Possibilities</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ FUN FACTS ═══ -->
+    <section id="facts">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">Did You Know?</div>
+          <h2 class="section-title">Mind-Blowing <span class="accent">Gaming Facts</span></h2>
+          <p class="section-desc">The gaming world is full of surprises. Here are some facts that will blow your mind!</p>
+        </div>
+        <div class="facts-grid">
+          <div class="fact-card reveal">
+            <span class="fact-icon">🕹️</span>
+            <h3>First Video Game Ever</h3>
+            <p>The first video game, <strong>"Tennis for Two"</strong>, was created in 1958 by physicist William Higinbotham. It was played on an oscilloscope — long before Pong!</p>
+            <span class="fact-number">1958</span>
+          </div>
+          <div class="fact-card reveal">
+            <span class="fact-icon">👾</span>
+            <h3>Pac-Man's Original Name</h3>
+            <p>Pac-Man was originally called <strong>"Puck-Man"</strong> in Japan. The name was changed for the US release because vandals could easily scratch the "P" into an "F"!</p>
+            <span class="fact-number">1980</span>
+          </div>
+          <div class="fact-card reveal">
+            <span class="fact-icon">💰</span>
+            <h3>GTA V Made History</h3>
+            <p>Grand Theft Auto V earned <strong>$1 billion</strong> in just 3 days after launch — making it the fastest-selling entertainment product in history at the time.</p>
+            <span class="fact-number">$1B</span>
+          </div>
+          <div class="fact-card reveal">
+            <span class="fact-icon">🧠</span>
+            <h3>Gamers Are Smarter</h3>
+            <p>Studies show that playing video games can <strong>increase gray matter</strong> in the brain and improve problem-solving skills, memory, and hand-eye coordination.</p>
+            <span class="fact-number">+GM</span>
+          </div>
+          <div class="fact-card reveal">
+            <span class="fact-icon">🎮</span>
+            <h3>Minecraft's Insane Sales</h3>
+            <p>Minecraft is the <strong>best-selling video game</strong> of all time with over <strong>300 million copies</strong> sold worldwide — more than any other game in history.</p>
+            <span class="fact-number">300M</span>
+          </div>
+          <div class="fact-card reveal">
+            <span class="fact-icon">🏆</span>
+            <h3>E-Sports Is Massive</h3>
+            <p>The e-sports industry is valued at over <strong>$1.5 billion</strong> and the biggest tournaments like <strong>The International</strong> have prize pools exceeding $40 million!</p>
+            <span class="fact-number">$40M</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAMOUS GAMES ═══ -->
+    <section id="games">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">Legendary Titles</div>
+          <h2 class="section-title">Games That <span class="accent">Defined Generations</span></h2>
+          <p class="section-desc">From pixelated classics to massive open worlds — these games changed everything.</p>
+        </div>
 <div class="games-showcase">
   <div class="game-card reveal">
     <div class="game-card-image game-minecraft"><span class="game-logo-text">MINECRAFT</span></div>
@@ -244,17 +244,17 @@
     </div>
   </div>
 </div>
-253|      </div>
-254|    </section>
-255|
-256|    <!-- ═══ GAME CREATION PLATFORMS ═══ -->
-257|    <section id="create">
-258|      <div class="container">
-259|        <div class="section-header reveal">
-260|          <div class="section-tag">Build Your World</div>
-261|          <h2 class="section-title">Platforms to <span class="accent">Create Games</span></h2>
-262|          <p class="section-desc">Want to make your own game? These platforms make it easy — no matter your skill level!</p>
-263|        </div>
+      </div>
+    </section>
+
+    <!-- ═══ GAME CREATION PLATFORMS ═══ -->
+    <section id="create">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">Build Your World</div>
+          <h2 class="section-title">Platforms to <span class="accent">Create Games</span></h2>
+          <p class="section-desc">Want to make your own game? These platforms make it easy — no matter your skill level!</p>
+        </div>
 <div class="platforms-create-grid">
   <div class="platform-card reveal">
     <span class="platform-icon"><svg width="48" height="48" viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="8" fill="none" stroke="#00f0ff" stroke-width="1.5"/><polygon points="24,8 32,20 28,20 28,40 20,40 20,20 16,20" fill="#00f0ff" opacity="0.8"/></svg></span>
@@ -305,17 +305,17 @@
     <p>Runs entirely in your browser! Create 2D games with an intuitive drag-and-drop event system. Export to HTML5, mobile, and desktop.</p>
   </div>
 </div>
-314|      </div>
-315|    </section>
-316|
-317|    <!-- ═══ GAMING PLATFORMS ═══ -->
-318|    <section id="play">
-319|      <div class="container">
-320|        <div class="section-header reveal">
-321|          <div class="section-tag">Where to Play</div>
-322|          <h2 class="section-title">Gaming <span class="accent">Platforms</span></h2>
-323|          <p class="section-desc">The best places to discover, buy, and play games across every device.</p>
-324|        </div>
+      </div>
+    </section>
+
+    <!-- ═══ GAMING PLATFORMS ═══ -->
+    <section id="play">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">Where to Play</div>
+          <h2 class="section-title">Gaming <span class="accent">Platforms</span></h2>
+          <p class="section-desc">The best places to discover, buy, and play games across every device.</p>
+        </div>
 <div class="platforms-play-grid">
   <div class="play-card reveal">
     <span class="platform-emoji"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#00f0ff" stroke-width="1.5"/><circle cx="14" cy="20" r="5" fill="none" stroke="#00f0ff" stroke-width="1.5"/><path d="M18 20L34 20" stroke="#00f0ff" stroke-width="2"/><circle cx="28" cy="20" r="2" fill="#00f0ff"/></svg></span>
@@ -358,74 +358,73 @@
     <p>An indie game marketplace with unique experimental titles you won't find anywhere else.</p>
   </div>
 </div>
-367|      </div>
-368|    </section>
-369|
-370|    <!-- ═══ RPG MINIGAME ═══ -->
-371|    <section id="rpg-section">
-372|      <div class="container">
-373|        <div class="section-header reveal">
-374|          <div class="section-tag">Play Now</div>
-375|          <h2 class="section-title">Mini <span class="accent">RPG Adventure</span></h2>
-376|          <p class="section-desc">A top-down dungeon crawler — collect coins, avoid enemies, and survive as long as you can!</p>
-377|        </div>
-378|        <div class="rpg-wrapper">
-379|          <div class="rpg-hud">
-380|            <div class="rpg-hud-item">
-381|              <span class="label">Score</span>
-382|              <span class="value" id="rpg-score">0</span>
-383|            </div>
-384|            <div class="rpg-hud-item">
-385|              <span class="label">HP</span>
-386|              <span class="value" id="rpg-health">100</span>
-387|            </div>
-388|            <div class="rpg-hud-item">
-389|              <span class="label">Level</span>
-390|              <span class="value" id="rpg-level">1</span>
-391|            </div>
-392|          </div>
-393|          <div class="rpg-canvas-container">
-394|            <canvas id="rpg-canvas"></canvas>
-395|          </div>
-396|          <p class="rpg-controls-hint">
-397|            Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> to move &bull; Collect coins &bull; Avoid enemies &bull; Clear all coins to advance!
-398|          </p>
-399|        </div>
-400|      </div>
-401|    </section>
-402|
-403|    <!-- ═══ NEWSLETTER ═══ -->
-404|    <section>
-405|      <div class="container">
-406|        <div class="newsletter reveal">
-407|          <h2>Join the Gameverse</h2>
-408|          <p>Get weekly updates on the latest game releases, industry news, and exclusive content.</p>
-409|          <form class="newsletter-form" id="newsletterForm">
-410|            <input type="email" placeholder="Enter your email" required>
-411|            <button type="submit">Subscribe</button>
-412|          </form>
-413|        </div>
-414|      </div>
-415|    </section>
-416|
-417|    <!-- ═══ FOOTER ═══ -->
-418|    <footer>
-419|      <div class="container">
-420|        <ul class="footer-links">
-421|          <li><a href="#home">Home</a></li>
-422|          <li><a href="#facts">Fun Facts</a></li>
-423|          <li><a href="#games">Games</a></li>
-424|          <li><a href="#create">Create</a></li>
-425|          <li><a href="#play">Play</a></li>
-426|          <li><a href="#rpg-section">Mini RPG</a></li>
-427|        </ul>
-428|        <p>&copy; 2026 Gameverse. Built for gamers, by gamers. 🎮</p>
-429|      </div>
-430|    </footer>
-431|
-432|  </div><!-- /#main-content -->
-433|
-434|  <script src="script.js"></script>
-435|</body>
-436|</html>
-437|
+      </div>
+    </section>
+
+    <!-- ═══ RPG MINIGAME ═══ -->
+    <section id="rpg-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-tag">Play Now</div>
+          <h2 class="section-title">Mini <span class="accent">RPG Adventure</span></h2>
+          <p class="section-desc">A top-down dungeon crawler — collect coins, avoid enemies, and survive as long as you can!</p>
+        </div>
+        <div class="rpg-wrapper">
+          <div class="rpg-hud">
+            <div class="rpg-hud-item">
+              <span class="label">Score</span>
+              <span class="value" id="rpg-score">0</span>
+            </div>
+            <div class="rpg-hud-item">
+              <span class="label">HP</span>
+              <span class="value" id="rpg-health">100</span>
+            </div>
+            <div class="rpg-hud-item">
+              <span class="label">Level</span>
+              <span class="value" id="rpg-level">1</span>
+            </div>
+          </div>
+          <div class="rpg-canvas-container">
+            <canvas id="rpg-canvas"></canvas>
+          </div>
+          <p class="rpg-controls-hint">
+            Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> to move &bull; Collect coins &bull; Avoid enemies &bull; Clear all coins to advance!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ NEWSLETTER ═══ -->
+    <section>
+      <div class="container">
+        <div class="newsletter reveal">
+          <h2>Join the Gameverse</h2>
+          <p>Get weekly updates on the latest game releases, industry news, and exclusive content.</p>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer>
+      <div class="container">
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#facts">Fun Facts</a></li>
+          <li><a href="#games">Games</a></li>
+          <li><a href="#create">Create</a></li>
+          <li><a href="#play">Play</a></li>
+          <li><a href="#rpg-section">Mini RPG</a></li>
+        </ul>
+        <p>&copy; 2026 Gameverse. Built for gamers, by gamers. 🎮</p>
+      </div>
+    </footer>
+
+  </div><!-- /#main-content -->
+
+  <script src="script.js"></script>
+</body>
+</html>
