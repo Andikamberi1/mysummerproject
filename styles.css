@@ -242,6 +242,11 @@ body::after {
 .auth-error.show {
   display: block;
 }
+.auth-error.auth-success {
+  background: rgba(0, 255, 136, 0.1);
+  border-color: rgba(0, 255, 136, 0.3);
+  color: var(--neon-green);
+}
 
 /* ═══ MAIN CONTENT (hidden until auth) ═══ */
 #main-content {

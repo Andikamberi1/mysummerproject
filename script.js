@@ -25,10 +25,10 @@
   var loginError  = document.getElementById('login-error');
   var regError    = document.getElementById('register-error');
 
-  function showCardError(card, msg) {
+  function showCardError(card, msg, isSuccess) {
     var el = card === 'login' ? loginError : regError;
     el.textContent = msg;
-    el.classList.add('show');
+    el.className = 'auth-error show' + (isSuccess ? ' auth-success' : '');
   }
 
   function hideCardErrors() {
@@ -41,26 +41,57 @@
      ═══════════════════════════════════════════ */
   function login(email, password) {
     if (!supabase) return showCardError('login', 'Auth system not loaded.');
+    var btn = document.querySelector('#login-form .auth-btn');
+    btn.textContent = 'Signing in...';
+    btn.disabled = true;
     supabase.auth.signInWithPassword({ email: email, password: password })
       .then(function (res) {
-        if (res.error) showCardError('login', res.error.message);
+        if (res.error) {
+          var msg = res.error.message || '';
+          if (res.error.status === 429 || msg.indexOf('429') !== -1) {
+            msg = 'Too many attempts. Please wait 60 seconds and try again.';
+          }
+          showCardError('login', msg);
+        }
+      })
+      .catch(function (err) {
+        showCardError('login', 'Too many attempts. Please wait a moment and try again.');
+      })
+      .finally(function () {
+        btn.textContent = 'Login';
+        btn.disabled = false;
       });
   }
 
   function register(fullName, email, password) {
     if (!supabase) return showCardError('register', 'Auth system not loaded.');
+    var btn = document.querySelector('#register-form .auth-btn');
+    btn.textContent = 'Creating...';
+    btn.disabled = true;
     supabase.auth.signUp({
       email: email,
       password: password,
       options: { data: { full_name: fullName } }
     }).then(function (res) {
       if (res.error) {
-        showCardError('register', res.error.message);
+        var msg = res.error.message || '';
+        if (res.error.status === 429 || msg.indexOf('429') !== -1) {
+          msg = 'Too many attempts. Please wait 60 seconds and try again.';
+        }
+        showCardError('register', msg);
       } else if (res.data.user && res.data.user.identities && res.data.user.identities.length === 0) {
         showCardError('register', 'Account with this email already exists.');
       } else {
-        showCardError('register', 'Account created! Check your email to confirm, then sign in.');
+        showCardError('register', 'Account created! Switch to the Sign In tab to log in.', true);
+        setTimeout(function () {
+          document.getElementById('show-login-link').click();
+        }, 2500);
       }
+    }).catch(function (err) {
+      showCardError('register', 'Too many attempts. Please wait a moment and try again.');
+    }).finally(function () {
+      btn.textContent = 'Create Account';
+      btn.disabled = false;
     });
   }
 
@@ -168,7 +199,11 @@
           currentUser = null;
           hideMainContent();
           showAuthGate();
-          setAuthMode(true);
+          document.getElementById('login-form').reset();
+          document.getElementById('register-form').reset();
+          loginCard.style.display = '';
+          regCard.style.display = 'none';
+          hideCardErrors();
         }
       });
 
@@ -815,12 +850,6 @@
       rpgStarted = true;
       setTimeout(initRPG, 100);
     }
-  };
-
-  // Expose toggle for inline onclick (avoids addEventListener issues)
-  window._gameverseToggleAuth = function () {
-    setAuthMode(!isLoginMode);
-    authForm.reset();
   };
 
   // Bootstrap: load Supabase → init auth → then init everything else
