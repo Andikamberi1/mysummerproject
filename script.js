@@ -867,15 +867,25 @@
     // RPG starts after auth — see showMainContent()
   }
 
-  // Wrap showMainContent BEFORE auth fires — avoids race condition
+  // Start RPG when it scrolls into view — most reliable trigger
   var rpgStarted = false;
+  function tryStartRPG() {
+    if (rpgStarted) return;
+    var el = document.getElementById('rpg-canvas');
+    if (!el) return;
+    var rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 200) {
+      rpgStarted = true;
+      initRPG();
+    }
+  }
+  window.addEventListener('scroll', tryStartRPG, {passive: true});
+
+  // Also trigger after auth shows main content (backup)
   var origShowMainContent = showMainContent;
   showMainContent = function () {
     origShowMainContent();
-    if (!rpgStarted) {
-      rpgStarted = true;
-      setTimeout(initRPG, 100);
-    }
+    setTimeout(tryStartRPG, 200);
   };
 
   // Bootstrap: load Supabase → init auth → then init everything else

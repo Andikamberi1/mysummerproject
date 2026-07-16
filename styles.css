@@ -655,6 +655,19 @@ section {
   background: linear-gradient(to bottom, transparent 50%, var(--bg-card) 100%);
 }
 
+.game-logo-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.6);
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  line-height: 1.2;
+}
+
 .game-minecraft { background: linear-gradient(135deg, #3b8526, #1a3d0f); }
 .game-fortnite { background: linear-gradient(135deg, #7b2fff, #3a1078); }
 .game-roblox { background: linear-gradient(135deg, #d43434, #6b1a1a); }
