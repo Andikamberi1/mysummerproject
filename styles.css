@@ -681,6 +681,27 @@ section {
   margin-bottom: 12px;
 }
 
+.studio-logo {
+  height: 24px;
+  margin-bottom: 8px;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.7;
+}
+
+.platform-logo {
+  height: 40px;
+  margin-bottom: 12px;
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+.platform-card:hover .platform-logo,
+.play-card:hover .platform-logo {
+  opacity: 0.9;
+}
+
 .game-card-body p {
   color: var(--text-secondary);
   font-size: 0.9rem;
