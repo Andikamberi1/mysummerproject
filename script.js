@@ -492,16 +492,19 @@
     var invincibleTimer = 0;
     var animFrame = 0;
 
-    // Input
+    // Input — only intercept game keys, don't block typing elsewhere
+    var GAME_KEYS = ['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','W','a','A','s','S','d','D','r','R'];
     var keys = {};
     document.addEventListener('keydown', function (e) {
-      keys[e.key] = true;
-      if (gameOver && e.key === 'r') resetGame();
+      if (GAME_KEYS.indexOf(e.key) === -1) return;
       e.preventDefault();
+      keys[e.key] = true;
+      if (gameOver && (e.key === 'r' || e.key === 'R')) resetGame();
     });
     document.addEventListener('keyup', function (e) {
-      keys[e.key] = false;
+      if (GAME_KEYS.indexOf(e.key) === -1) return;
       e.preventDefault();
+      keys[e.key] = false;
     });
 
     function resetGame() {
