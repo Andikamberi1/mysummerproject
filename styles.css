@@ -652,20 +652,32 @@ section {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent 50%, var(--bg-card) 100%);
+  background: linear-gradient(to bottom, transparent 30%, var(--bg-card) 100%);
+  pointer-events: none;
 }
 
-.game-logo-text {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 900;
-  letter-spacing: 4px;
-  color: #fff;
-  text-shadow: 0 0 20px rgba(255,255,255,0.4), 0 2px 4px rgba(0,0,0,0.6);
+.game-logo-img {
+  width: 80%;
+  max-width: 280px;
+  height: auto;
   position: relative;
   z-index: 1;
-  text-align: center;
-  line-height: 1.2;
+  display: block;
+  margin: 0 auto;
+}
+
+.platform-icon-img {
+  width: 64px;
+  height: 64px;
+  display: block;
+  margin: 0 auto 16px;
+}
+
+.platform-emoji-img {
+  width: 52px;
+  height: 52px;
+  display: block;
+  margin: 0 auto 12px;
 }
 
 .game-minecraft { background: linear-gradient(135deg, #3b8526, #1a3d0f); }
