@@ -1,436 +1,437 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GAMEVERSE — The Future of Gaming</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-  <!-- ═══ AUTH GATE ═══ -->
-  <div id="auth-gate">
-    <!-- LOGIN CARD -->
-    <div class="auth-card" id="login-card">
-      <div class="auth-logo">GAMEVERSE</div>
-      <p class="auth-subtitle">Sign in to enter the universe</p>
-      <div class="auth-error" id="login-error"></div>
-      <form id="login-form" autocomplete="off">
-        <label for="login-email">Email</label>
-        <input type="email" id="login-email" placeholder="you@example.com" required autocomplete="off">
-        <label for="login-password">Password</label>
-        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="off">
-        <button type="submit" class="auth-btn">Login</button>
-      </form>
-      <p class="auth-switch">Don't have an account? <a id="show-register-link">Register here</a></p>
-    </div>
-
-    <!-- REGISTER CARD (hidden by default) -->
-    <div class="auth-card" id="register-card" style="display:none;">
-      <div class="auth-logo">GAMEVERSE</div>
-      <p class="auth-subtitle">Create your account</p>
-      <div class="auth-error" id="register-error"></div>
-      <form id="register-form" autocomplete="off">
-        <label for="reg-fullname">Full Name</label>
-        <input type="text" id="reg-fullname" placeholder="Your full name" autocomplete="off">
-        <label for="reg-email">Email</label>
-        <input type="email" id="reg-email" placeholder="you@example.com" required autocomplete="off">
-        <label for="reg-password">Password</label>
-        <input type="password" id="reg-password" placeholder="••••••••" required autocomplete="off">
-        <button type="submit" class="auth-btn">Create Account</button>
-      </form>
-      <p class="auth-switch">Already have an account? <a id="show-login-link">Sign in</a></p>
-    </div>
-  </div>
-
-  <!-- ═══ MAIN CONTENT (hidden until authenticated) ═══ -->
-  <div id="main-content">
-
-    <!-- ═══ Particles Canvas ═══ -->
-    <canvas id="particles-canvas"></canvas>
-
-    <!-- ═══ NAV ═══ -->
-    <nav>
-      <div class="nav-inner">
-        <div class="nav-logo">Gameverse</div>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#facts">Fun Facts</a></li>
-          <li><a href="#games">Games</a></li>
-          <li><a href="#create">Create</a></li>
-          <li><a href="#play">Play</a></li>
-          <li><a href="#rpg-section">Mini RPG</a></li>
-          <li>
-            <span class="nav-user-email" id="nav-user-email"></span>
-            <button class="btn-logout" id="btn-logout">Logout</button>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- ═══ HERO ═══ -->
-    <section class="hero" id="home">
-      <div class="hero-content">
-        <div class="hero-badge">🚀 Next-Gen Gaming</div>
-        <h1>Welcome to<br>GAMEVERSE</h1>
-        <p class="hero-subtitle">Explore the universe of video games — from retro classics to next-gen experiences</p>
-        <div class="hero-cta">
-          <a href="#games" class="btn-primary">Explore Games</a>
-          <a href="#create" class="btn-outline">Start Creating</a>
-        </div>
-      </div>
-      <div class="scroll-indicator">
-        <span>Scroll</span>
-        <div class="scroll-arrow"></div>
-      </div>
-    </section>
-
-    <!-- ═══ STATS BANNER ═══ -->
-    <div class="stats-banner">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <span class="stat-number">3.2B</span>
-            <span class="stat-label">Gamers Worldwide</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">$184B</span>
-            <span class="stat-label">Industry Value</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">50+</span>
-            <span class="stat-label">Years of Gaming</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">∞</span>
-            <span class="stat-label">Possibilities</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ FUN FACTS ═══ -->
-    <section id="facts">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-tag">Did You Know?</div>
-          <h2 class="section-title">Mind-Blowing <span class="accent">Gaming Facts</span></h2>
-          <p class="section-desc">The gaming world is full of surprises. Here are some facts that will blow your mind!</p>
-        </div>
-        <div class="facts-grid">
-          <div class="fact-card reveal">
-            <span class="fact-icon">🕹️</span>
-            <h3>First Video Game Ever</h3>
-            <p>The first video game, <strong>"Tennis for Two"</strong>, was created in 1958 by physicist William Higinbotham. It was played on an oscilloscope — long before Pong!</p>
-            <span class="fact-number">1958</span>
-          </div>
-          <div class="fact-card reveal">
-            <span class="fact-icon">👾</span>
-            <h3>Pac-Man's Original Name</h3>
-            <p>Pac-Man was originally called <strong>"Puck-Man"</strong> in Japan. The name was changed for the US release because vandals could easily scratch the "P" into an "F"!</p>
-            <span class="fact-number">1980</span>
-          </div>
-          <div class="fact-card reveal">
-            <span class="fact-icon">💰</span>
-            <h3>GTA V Made History</h3>
-            <p>Grand Theft Auto V earned <strong>$1 billion</strong> in just 3 days after launch — making it the fastest-selling entertainment product in history at the time.</p>
-            <span class="fact-number">$1B</span>
-          </div>
-          <div class="fact-card reveal">
-            <span class="fact-icon">🧠</span>
-            <h3>Gamers Are Smarter</h3>
-            <p>Studies show that playing video games can <strong>increase gray matter</strong> in the brain and improve problem-solving skills, memory, and hand-eye coordination.</p>
-            <span class="fact-number">+GM</span>
-          </div>
-          <div class="fact-card reveal">
-            <span class="fact-icon">🎮</span>
-            <h3>Minecraft's Insane Sales</h3>
-            <p>Minecraft is the <strong>best-selling video game</strong> of all time with over <strong>300 million copies</strong> sold worldwide — more than any other game in history.</p>
-            <span class="fact-number">300M</span>
-          </div>
-          <div class="fact-card reveal">
-            <span class="fact-icon">🏆</span>
-            <h3>E-Sports Is Massive</h3>
-            <p>The e-sports industry is valued at over <strong>$1.5 billion</strong> and the biggest tournaments like <strong>The International</strong> have prize pools exceeding $40 million!</p>
-            <span class="fact-number">$40M</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ FAMOUS GAMES ═══ -->
-    <section id="games">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-tag">Legendary Titles</div>
-          <h2 class="section-title">Games That <span class="accent">Defined Generations</span></h2>
-          <p class="section-desc">From pixelated classics to massive open worlds — these games changed everything.</p>
-        </div>
-        <div class="games-showcase">
-          <div class="game-card reveal">
-            <div class="game-card-image game-minecraft"></div>
-            <div class="game-card-body">
-              <img class="studio-logo" src="https://cdn.simpleicons.org/mojangstudios/00f0ff" alt="Mojang" onerror="this.style.display='none'">
-              <h3>Minecraft</h3>
-              <div class="game-studio">Mojang Studios</div>
-              <p>The ultimate sandbox game where you can build, explore, and survive in an infinite block-based world. No rules — just creativity.</p>
-              <div class="game-stats">
-                <div class="game-stat"><strong>300M+</strong> copies sold</div>
-                <div class="game-stat"><strong>2011</strong> released</div>
-              </div>
-            </div>
-          </div>
-          <div class="game-card reveal">
-            <div class="game-card-image game-fortnite"></div>
-            <div class="game-card-body">
-              <img class="studio-logo" src="https://cdn.simpleicons.org/epicgames/00f0ff" alt="Epic Games" onerror="this.style.display='none'">
-              <h3>Fortnite</h3>
-              <div class="game-studio">Epic Games</div>
-              <p>More than just a battle royale — Fortnite is a cultural phenomenon with live concerts, creative mode, and constant updates.</p>
-              <div class="game-stats">
-                <div class="game-stat"><strong>650M+</strong> players</div>
-                <div class="game-stat"><strong>2017</strong> released</div>
-              </div>
-            </div>
-          </div>
-          <div class="game-card reveal">
-            <div class="game-card-image game-roblox"></div>
-            <div class="game-card-body">
-              <img class="studio-logo" src="https://cdn.simpleicons.org/roblox/00f0ff" alt="Roblox" onerror="this.style.display='none'">
-              <h3>Roblox</h3>
-              <div class="game-studio">Roblox Corporation</div>
-              <p>A platform where players create and share their own games. Millions of user-created experiences — from obstacle courses to RPGs!</p>
-              <div class="game-stats">
-                <div class="game-stat"><strong>70M+</strong> daily users</div>
-                <div class="game-stat"><strong>2006</strong> launched</div>
-              </div>
-            </div>
-          </div>
-          <div class="game-card reveal">
-            <div class="game-card-image game-genshin"></div>
-            <div class="game-card-body">
-              <img class="studio-logo" src="https://cdn.simpleicons.org/hoyoverse/00f0ff" alt="HoYoverse" onerror="this.style.display='none'">
-              <h3>Genshin Impact</h3>
-              <div class="game-studio">HoYoverse</div>
-              <p>A breathtaking open-world action RPG with an anime art style, elemental combat system, and a massive world to explore — for free!</p>
-              <div class="game-stats">
-                <div class="game-stat"><strong>$4B+</strong> revenue</div>
-                <div class="game-stat"><strong>2020</strong> released</div>
-              </div>
-            </div>
-          </div>
-          <div class="game-card reveal">
-            <div class="game-card-image game-amongus"></div>
-            <div class="game-card-body">
-              <img class="studio-logo" src="https://cdn.simpleicons.org/innersloth/00f0ff" alt="Innersloth" onerror="this.style.display='none'">
-              <h3>Among Us</h3>
-              <div class="game-studio">Innersloth</div>
-              <p>A social deduction game where crewmates work together to complete tasks while impostors secretly sabotage — and eliminate — the crew.</p>
-              <div class="game-stats">
-                <div class="game-stat"><strong>500M+</strong> players</div>
-                <div class="game-stat"><strong>2018</strong> released</div>
-              </div>
-            </div>
-          </div>
-          <div class="game-card reveal">
-            <div class="game-card-image game-valorant"></div>
-            <div class="game-card-body">
-              <img class="studio-logo" src="https://cdn.simpleicons.org/riotgames/00f0ff" alt="Riot Games" onerror="this.style.display='none'">
-              <h3>Valorant</h3>
-              <div class="game-studio">Riot Games</div>
-              <p>A tactical 5v5 shooter where precise gunplay meets unique agent abilities. One of the fastest-growing competitive games in the world.</p>
-              <div class="game-stats">
-                <div class="game-stat"><strong>28M+</strong> monthly players</div>
-                <div class="game-stat"><strong>2020</strong> released</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ GAME CREATION PLATFORMS ═══ -->
-    <section id="create">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-tag">Build Your World</div>
-          <h2 class="section-title">Platforms to <span class="accent">Create Games</span></h2>
-          <p class="section-desc">Want to make your own game? These platforms make it easy — no matter your skill level!</p>
-        </div>
-        <div class="platforms-create-grid">
-          <div class="platform-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/unity/00f0ff" alt="Unity" onerror="this.style.display='none'">
-            <h3>Unity</h3>
-            <span class="platform-level level-intermediate">Intermediate</span>
-            <p>The most popular game engine in the world. Used to create hits like Hollow Knight, Cuphead, and Pokémon GO. Free for beginners!</p>
-          </div>
-          <div class="platform-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/unrealengine/00f0ff" alt="Unreal Engine" onerror="this.style.display='none'">
-            <h3>Unreal Engine 5</h3>
-            <span class="platform-level level-advanced">Advanced</span>
-            <p>Industry-leading graphics powering games like Fortnite and Gears of War. Features Blueprint visual scripting — no coding needed!</p>
-          </div>
-          <div class="platform-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/godotengine/00f0ff" alt="Godot" onerror="this.style.display='none'">
-            <h3>Godot</h3>
-            <span class="platform-level level-beginner">Beginner-Friendly</span>
-            <p>A completely free and open-source game engine. Lightweight, easy to learn, and perfect for 2D and 3D indie games.</p>
-          </div>
-          <div class="platform-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/roblox/00f0ff" alt="Roblox Studio" onerror="this.style.display='none'">
-            <h3>Roblox Studio</h3>
-            <span class="platform-level level-beginner">Beginner-Friendly</span>
-            <p>Build and publish games directly to millions of players. Uses Lua scripting — one of the easiest languages to learn!</p>
-          </div>
-          <div class="platform-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/scratch/00f0ff" alt="Scratch" onerror="this.style.display='none'">
-            <h3>Scratch</h3>
-            <span class="platform-level level-beginner">Super Beginner</span>
-            <p>Created by MIT, Scratch uses drag-and-drop blocks to teach coding. Perfect for kids and absolute beginners who want to start making games today!</p>
-          </div>
-          <div class="platform-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/gamemaker/00f0ff" alt="GameMaker" onerror="this.style.display='none'">
-            <h3>GameMaker</h3>
-            <span class="platform-level level-intermediate">Intermediate</span>
-            <p>Used to create indie hits like Undertale and Hyper Light Drifter. Features a visual drag-and-drop system alongside its own scripting language.</p>
-          </div>
-          <div class="platform-card reveal">
-            <span class="platform-icon">🎨</span>
-            <h3>RPG Maker</h3>
-            <span class="platform-level level-beginner">Beginner-Friendly</span>
-            <p>Specialized in making classic JRPG-style games with pre-built assets, turn-based combat, and map editors. No programming required!</p>
-          </div>
-          <div class="platform-card reveal">
-            <span class="platform-icon">⚡</span>
-            <h3>Construct 3</h3>
-            <span class="platform-level level-beginner">Beginner-Friendly</span>
-            <p>Runs entirely in your browser! Create 2D games with an intuitive drag-and-drop event system. Export to HTML5, mobile, and desktop.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ GAMING PLATFORMS ═══ -->
-    <section id="play">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-tag">Where to Play</div>
-          <h2 class="section-title">Gaming <span class="accent">Platforms</span></h2>
-          <p class="section-desc">The best places to discover, buy, and play games across every device.</p>
-        </div>
-        <div class="platforms-play-grid">
-          <div class="play-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/steam/00f0ff" alt="Steam" onerror="this.style.display='none'">
-            <h3>Steam</h3>
-            <p>The largest PC gaming platform with 50,000+ games, frequent sales, and community features.</p>
-          </div>
-          <div class="play-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/epicgames/00f0ff" alt="Epic Games" onerror="this.style.display='none'">
-            <h3>Epic Games Store</h3>
-            <p>Weekly free games, exclusive titles, and Unreal Engine integration for creators.</p>
-          </div>
-          <div class="play-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/xbox/00f0ff" alt="Xbox" onerror="this.style.display='none'">
-            <h3>Xbox Game Pass</h3>
-            <p>Netflix for games! Hundreds of titles for one monthly fee, including day-one releases.</p>
-          </div>
-          <div class="play-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/playstation/00f0ff" alt="PlayStation" onerror="this.style.display='none'">
-            <h3>PlayStation Plus</h3>
-            <p>Online multiplayer, monthly free games, and a growing catalog of PS4 &amp; PS5 titles.</p>
-          </div>
-          <div class="play-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/nintendo/00f0ff" alt="Nintendo" onerror="this.style.display='none'">
-            <h3>Nintendo eShop</h3>
-            <p>Home to Mario, Zelda, Pokémon, and thousands of indie gems on the Nintendo Switch.</p>
-          </div>
-          <div class="play-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/googleplay/00f0ff" alt="Mobile" onerror="this.style.display='none'">
-            <h3>Mobile Gaming</h3>
-            <p>Google Play &amp; App Store offer millions of games — from puzzle games to full AAA ports.</p>
-          </div>
-          <div class="play-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/nvidia/00f0ff" alt="Cloud Gaming" onerror="this.style.display='none'">
-            <h3>Cloud Gaming</h3>
-            <p>Services like GeForce NOW, Xbox Cloud, and Luna let you stream games without a powerful PC!</p>
-          </div>
-          <div class="play-card reveal">
-            <img class="platform-logo" src="https://cdn.simpleicons.org/itchdotio/00f0ff" alt="itch.io" onerror="this.style.display='none'">
-            <h3>itch.io</h3>
-            <p>An indie game marketplace with unique experimental titles you won't find anywhere else.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ RPG MINIGAME ═══ -->
-    <section id="rpg-section">
-      <div class="container">
-        <div class="section-header reveal">
-          <div class="section-tag">Play Now</div>
-          <h2 class="section-title">Mini <span class="accent">RPG Adventure</span></h2>
-          <p class="section-desc">A top-down dungeon crawler — collect coins, avoid enemies, and survive as long as you can!</p>
-        </div>
-        <div class="rpg-wrapper">
-          <div class="rpg-hud">
-            <div class="rpg-hud-item">
-              <span class="label">Score</span>
-              <span class="value" id="rpg-score">0</span>
-            </div>
-            <div class="rpg-hud-item">
-              <span class="label">HP</span>
-              <span class="value" id="rpg-health">100</span>
-            </div>
-            <div class="rpg-hud-item">
-              <span class="label">Level</span>
-              <span class="value" id="rpg-level">1</span>
-            </div>
-          </div>
-          <div class="rpg-canvas-container">
-            <canvas id="rpg-canvas"></canvas>
-          </div>
-          <p class="rpg-controls-hint">
-            Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> to move &bull; Collect coins &bull; Avoid enemies &bull; Clear all coins to advance!
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ NEWSLETTER ═══ -->
-    <section>
-      <div class="container">
-        <div class="newsletter reveal">
-          <h2>Join the Gameverse</h2>
-          <p>Get weekly updates on the latest game releases, industry news, and exclusive content.</p>
-          <form class="newsletter-form" id="newsletterForm">
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ FOOTER ═══ -->
-    <footer>
-      <div class="container">
-        <ul class="footer-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#facts">Fun Facts</a></li>
-          <li><a href="#games">Games</a></li>
-          <li><a href="#create">Create</a></li>
-          <li><a href="#play">Play</a></li>
-          <li><a href="#rpg-section">Mini RPG</a></li>
-        </ul>
-        <p>&copy; 2026 Gameverse. Built for gamers, by gamers. 🎮</p>
-      </div>
-    </footer>
-
-  </div><!-- /#main-content -->
-
-  <script src="script.js"></script>
-</body>
-</html>
+1|<!DOCTYPE html>
+2|<html lang="en">
+3|<head>
+4|  <meta charset="UTF-8">
+5|  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+6|  <title>GAMEVERSE — The Future of Gaming</title>
+7|  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+8|  <link rel="stylesheet" href="styles.css">
+9|</head>
+10|<body>
+11|
+12|  <!-- ═══ AUTH GATE ═══ -->
+13|  <div id="auth-gate">
+14|    <!-- LOGIN CARD -->
+15|    <div class="auth-card" id="login-card">
+16|      <div class="auth-logo">GAMEVERSE</div>
+17|      <p class="auth-subtitle">Sign in to enter the universe</p>
+18|      <div class="auth-error" id="login-error"></div>
+19|      <form id="login-form" autocomplete="off">
+20|        <label for="login-email">Email</label>
+21|        <input type="email" id="login-email" placeholder="you@example.com" required autocomplete="off">
+22|        <label for="login-password">Password</label>
+23|        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="off">
+24|        <button type="submit" class="auth-btn">Login</button>
+25|      </form>
+26|      <p class="auth-switch">Don't have an account? <a id="show-register-link">Register here</a></p>
+27|    </div>
+28|
+29|    <!-- REGISTER CARD (hidden by default) -->
+30|    <div class="auth-card" id="register-card" style="display:none;">
+31|      <div class="auth-logo">GAMEVERSE</div>
+32|      <p class="auth-subtitle">Create your account</p>
+33|      <div class="auth-error" id="register-error"></div>
+34|      <form id="register-form" autocomplete="off">
+35|        <label for="reg-fullname">Full Name</label>
+36|        <input type="text" id="reg-fullname" placeholder="Your full name" autocomplete="off">
+37|        <label for="reg-email">Email</label>
+38|        <input type="email" id="reg-email" placeholder="you@example.com" required autocomplete="off">
+39|        <label for="reg-password">Password</label>
+40|        <input type="password" id="reg-password" placeholder="••••••••" required autocomplete="off">
+41|        <button type="submit" class="auth-btn">Create Account</button>
+42|      </form>
+43|      <p class="auth-switch">Already have an account? <a id="show-login-link">Sign in</a></p>
+44|    </div>
+45|  </div>
+46|
+47|  <!-- ═══ MAIN CONTENT (hidden until authenticated) ═══ -->
+48|  <div id="main-content">
+49|
+50|    <!-- ═══ Particles Canvas ═══ -->
+51|    <canvas id="particles-canvas"></canvas>
+52|
+53|    <!-- ═══ NAV ═══ -->
+54|    <nav>
+55|      <div class="nav-inner">
+56|        <div class="nav-logo">Gameverse</div>
+57|        <button class="hamburger" id="hamburger" aria-label="Menu">
+58|          <span></span><span></span><span></span>
+59|        </button>
+60|        <ul class="nav-links" id="navLinks">
+61|          <li><a href="#home">Home</a></li>
+62|          <li><a href="#facts">Fun Facts</a></li>
+63|          <li><a href="#games">Games</a></li>
+64|          <li><a href="#create">Create</a></li>
+65|          <li><a href="#play">Play</a></li>
+66|          <li><a href="#rpg-section">Mini RPG</a></li>
+67|          <li>
+68|            <span class="nav-user-email" id="nav-user-email"></span>
+69|            <button class="btn-logout" id="btn-logout">Logout</button>
+70|          </li>
+71|        </ul>
+72|      </div>
+73|    </nav>
+74|
+75|    <!-- ═══ HERO ═══ -->
+76|    <section class="hero" id="home">
+77|      <div class="hero-content">
+78|        <div class="hero-badge">🚀 Next-Gen Gaming</div>
+79|        <h1>Welcome to<br>GAMEVERSE</h1>
+80|        <p class="hero-subtitle">Explore the universe of video games — from retro classics to next-gen experiences</p>
+81|        <div class="hero-cta">
+82|          <a href="#games" class="btn-primary">Explore Games</a>
+83|          <a href="#create" class="btn-outline">Start Creating</a>
+84|        </div>
+85|      </div>
+86|      <div class="scroll-indicator">
+87|        <span>Scroll</span>
+88|        <div class="scroll-arrow"></div>
+89|      </div>
+90|    </section>
+91|
+92|    <!-- ═══ STATS BANNER ═══ -->
+93|    <div class="stats-banner">
+94|      <div class="container">
+95|        <div class="stats-grid">
+96|          <div class="stat-item">
+97|            <span class="stat-number">3.2B</span>
+98|            <span class="stat-label">Gamers Worldwide</span>
+99|          </div>
+100|          <div class="stat-item">
+101|            <span class="stat-number">$184B</span>
+102|            <span class="stat-label">Industry Value</span>
+103|          </div>
+104|          <div class="stat-item">
+105|            <span class="stat-number">50+</span>
+106|            <span class="stat-label">Years of Gaming</span>
+107|          </div>
+108|          <div class="stat-item">
+109|            <span class="stat-number">∞</span>
+110|            <span class="stat-label">Possibilities</span>
+111|          </div>
+112|        </div>
+113|      </div>
+114|    </div>
+115|
+116|    <!-- ═══ FUN FACTS ═══ -->
+117|    <section id="facts">
+118|      <div class="container">
+119|        <div class="section-header reveal">
+120|          <div class="section-tag">Did You Know?</div>
+121|          <h2 class="section-title">Mind-Blowing <span class="accent">Gaming Facts</span></h2>
+122|          <p class="section-desc">The gaming world is full of surprises. Here are some facts that will blow your mind!</p>
+123|        </div>
+124|        <div class="facts-grid">
+125|          <div class="fact-card reveal">
+126|            <span class="fact-icon">🕹️</span>
+127|            <h3>First Video Game Ever</h3>
+128|            <p>The first video game, <strong>"Tennis for Two"</strong>, was created in 1958 by physicist William Higinbotham. It was played on an oscilloscope — long before Pong!</p>
+129|            <span class="fact-number">1958</span>
+130|          </div>
+131|          <div class="fact-card reveal">
+132|            <span class="fact-icon">👾</span>
+133|            <h3>Pac-Man's Original Name</h3>
+134|            <p>Pac-Man was originally called <strong>"Puck-Man"</strong> in Japan. The name was changed for the US release because vandals could easily scratch the "P" into an "F"!</p>
+135|            <span class="fact-number">1980</span>
+136|          </div>
+137|          <div class="fact-card reveal">
+138|            <span class="fact-icon">💰</span>
+139|            <h3>GTA V Made History</h3>
+140|            <p>Grand Theft Auto V earned <strong>$1 billion</strong> in just 3 days after launch — making it the fastest-selling entertainment product in history at the time.</p>
+141|            <span class="fact-number">$1B</span>
+142|          </div>
+143|          <div class="fact-card reveal">
+144|            <span class="fact-icon">🧠</span>
+145|            <h3>Gamers Are Smarter</h3>
+146|            <p>Studies show that playing video games can <strong>increase gray matter</strong> in the brain and improve problem-solving skills, memory, and hand-eye coordination.</p>
+147|            <span class="fact-number">+GM</span>
+148|          </div>
+149|          <div class="fact-card reveal">
+150|            <span class="fact-icon">🎮</span>
+151|            <h3>Minecraft's Insane Sales</h3>
+152|            <p>Minecraft is the <strong>best-selling video game</strong> of all time with over <strong>300 million copies</strong> sold worldwide — more than any other game in history.</p>
+153|            <span class="fact-number">300M</span>
+154|          </div>
+155|          <div class="fact-card reveal">
+156|            <span class="fact-icon">🏆</span>
+157|            <h3>E-Sports Is Massive</h3>
+158|            <p>The e-sports industry is valued at over <strong>$1.5 billion</strong> and the biggest tournaments like <strong>The International</strong> have prize pools exceeding $40 million!</p>
+159|            <span class="fact-number">$40M</span>
+160|          </div>
+161|        </div>
+162|      </div>
+163|    </section>
+164|
+165|    <!-- ═══ FAMOUS GAMES ═══ -->
+166|    <section id="games">
+167|      <div class="container">
+168|        <div class="section-header reveal">
+169|          <div class="section-tag">Legendary Titles</div>
+170|          <h2 class="section-title">Games That <span class="accent">Defined Generations</span></h2>
+171|          <p class="section-desc">From pixelated classics to massive open worlds — these games changed everything.</p>
+172|        </div>
+173|        <div class="games-showcase">
+174|          <div class="game-card reveal">
+175|            <div class="game-card-image game-minecraft"></div>
+176|            <div class="game-card-body">
+            <span class="studio-logo">Mojang</span>
+178|              <h3>Minecraft</h3>
+179|              <div class="game-studio">Mojang Studios</div>
+180|              <p>The ultimate sandbox game where you can build, explore, and survive in an infinite block-based world. No rules — just creativity.</p>
+181|              <div class="game-stats">
+182|                <div class="game-stat"><strong>300M+</strong> copies sold</div>
+183|                <div class="game-stat"><strong>2011</strong> released</div>
+184|              </div>
+185|            </div>
+186|          </div>
+187|          <div class="game-card reveal">
+188|            <div class="game-card-image game-fortnite"></div>
+189|            <div class="game-card-body">
+            <img class="studio-logo" src="https://www.google.com/s2/favicons?domain=epicgames.com&sz=64" alt="Epic">
+191|              <h3>Fortnite</h3>
+192|              <div class="game-studio">Epic Games</div>
+193|              <p>More than just a battle royale — Fortnite is a cultural phenomenon with live concerts, creative mode, and constant updates.</p>
+194|              <div class="game-stats">
+195|                <div class="game-stat"><strong>650M+</strong> players</div>
+196|                <div class="game-stat"><strong>2017</strong> released</div>
+197|              </div>
+198|            </div>
+199|          </div>
+200|          <div class="game-card reveal">
+201|            <div class="game-card-image game-roblox"></div>
+202|            <div class="game-card-body">
+            <img class="studio-logo" src="https://www.google.com/s2/favicons?domain=roblox.com&sz=64" alt="Roblox">
+204|              <h3>Roblox</h3>
+205|              <div class="game-studio">Roblox Corporation</div>
+206|              <p>A platform where players create and share their own games. Millions of user-created experiences — from obstacle courses to RPGs!</p>
+207|              <div class="game-stats">
+208|                <div class="game-stat"><strong>70M+</strong> daily users</div>
+209|                <div class="game-stat"><strong>2006</strong> launched</div>
+210|              </div>
+211|            </div>
+212|          </div>
+213|          <div class="game-card reveal">
+214|            <div class="game-card-image game-genshin"></div>
+215|            <div class="game-card-body">
+            <span class="studio-logo">Hoyoverse</span>
+217|              <h3>Genshin Impact</h3>
+218|              <div class="game-studio">HoYoverse</div>
+219|              <p>A breathtaking open-world action RPG with an anime art style, elemental combat system, and a massive world to explore — for free!</p>
+220|              <div class="game-stats">
+221|                <div class="game-stat"><strong>$4B+</strong> revenue</div>
+222|                <div class="game-stat"><strong>2020</strong> released</div>
+223|              </div>
+224|            </div>
+225|          </div>
+226|          <div class="game-card reveal">
+227|            <div class="game-card-image game-amongus"></div>
+228|            <div class="game-card-body">
+            <span class="studio-logo">Innersloth</span>
+230|              <h3>Among Us</h3>
+231|              <div class="game-studio">Innersloth</div>
+232|              <p>A social deduction game where crewmates work together to complete tasks while impostors secretly sabotage — and eliminate — the crew.</p>
+233|              <div class="game-stats">
+234|                <div class="game-stat"><strong>500M+</strong> players</div>
+235|                <div class="game-stat"><strong>2018</strong> released</div>
+236|              </div>
+237|            </div>
+238|          </div>
+239|          <div class="game-card reveal">
+240|            <div class="game-card-image game-valorant"></div>
+241|            <div class="game-card-body">
+            <span class="studio-logo">Riot</span>
+243|              <h3>Valorant</h3>
+244|              <div class="game-studio">Riot Games</div>
+245|              <p>A tactical 5v5 shooter where precise gunplay meets unique agent abilities. One of the fastest-growing competitive games in the world.</p>
+246|              <div class="game-stats">
+247|                <div class="game-stat"><strong>28M+</strong> monthly players</div>
+248|                <div class="game-stat"><strong>2020</strong> released</div>
+249|              </div>
+250|            </div>
+251|          </div>
+252|        </div>
+253|      </div>
+254|    </section>
+255|
+256|    <!-- ═══ GAME CREATION PLATFORMS ═══ -->
+257|    <section id="create">
+258|      <div class="container">
+259|        <div class="section-header reveal">
+260|          <div class="section-tag">Build Your World</div>
+261|          <h2 class="section-title">Platforms to <span class="accent">Create Games</span></h2>
+262|          <p class="section-desc">Want to make your own game? These platforms make it easy — no matter your skill level!</p>
+263|        </div>
+264|        <div class="platforms-create-grid">
+265|          <div class="platform-card reveal">
+            <img class="platform-logo" src="https://www.google.com/s2/favicons?domain=unity.com&sz=64" alt="Unity">
+267|            <h3>Unity</h3>
+268|            <span class="platform-level level-intermediate">Intermediate</span>
+269|            <p>The most popular game engine in the world. Used to create hits like Hollow Knight, Cuphead, and Pokémon GO. Free for beginners!</p>
+270|          </div>
+271|          <div class="platform-card reveal">
+            <img class="platform-logo" src="https://www.google.com/s2/favicons?domain=unrealengine.com&sz=64" alt="Unreal">
+273|            <h3>Unreal Engine 5</h3>
+274|            <span class="platform-level level-advanced">Advanced</span>
+275|            <p>Industry-leading graphics powering games like Fortnite and Gears of War. Features Blueprint visual scripting — no coding needed!</p>
+276|          </div>
+277|          <div class="platform-card reveal">
+            <span class="platform-logo">Godot</span>
+279|            <h3>Godot</h3>
+280|            <span class="platform-level level-beginner">Beginner-Friendly</span>
+281|            <p>A completely free and open-source game engine. Lightweight, easy to learn, and perfect for 2D and 3D indie games.</p>
+282|          </div>
+283|          <div class="platform-card reveal">
+            <span class="platform-logo">Roblox St.</span>
+285|            <h3>Roblox Studio</h3>
+286|            <span class="platform-level level-beginner">Beginner-Friendly</span>
+287|            <p>Build and publish games directly to millions of players. Uses Lua scripting — one of the easiest languages to learn!</p>
+288|          </div>
+289|          <div class="platform-card reveal">
+            <span class="platform-logo">Scratch</span>
+291|            <h3>Scratch</h3>
+292|            <span class="platform-level level-beginner">Super Beginner</span>
+293|            <p>Created by MIT, Scratch uses drag-and-drop blocks to teach coding. Perfect for kids and absolute beginners who want to start making games today!</p>
+294|          </div>
+295|          <div class="platform-card reveal">
+            <span class="platform-logo">GameMaker</span>
+297|            <h3>GameMaker</h3>
+298|            <span class="platform-level level-intermediate">Intermediate</span>
+299|            <p>Used to create indie hits like Undertale and Hyper Light Drifter. Features a visual drag-and-drop system alongside its own scripting language.</p>
+300|          </div>
+301|          <div class="platform-card reveal">
+302|            <span class="platform-icon">🎨</span>
+303|            <h3>RPG Maker</h3>
+304|            <span class="platform-level level-beginner">Beginner-Friendly</span>
+305|            <p>Specialized in making classic JRPG-style games with pre-built assets, turn-based combat, and map editors. No programming required!</p>
+306|          </div>
+307|          <div class="platform-card reveal">
+308|            <span class="platform-icon">⚡</span>
+309|            <h3>Construct 3</h3>
+310|            <span class="platform-level level-beginner">Beginner-Friendly</span>
+311|            <p>Runs entirely in your browser! Create 2D games with an intuitive drag-and-drop event system. Export to HTML5, mobile, and desktop.</p>
+312|          </div>
+313|        </div>
+314|      </div>
+315|    </section>
+316|
+317|    <!-- ═══ GAMING PLATFORMS ═══ -->
+318|    <section id="play">
+319|      <div class="container">
+320|        <div class="section-header reveal">
+321|          <div class="section-tag">Where to Play</div>
+322|          <h2 class="section-title">Gaming <span class="accent">Platforms</span></h2>
+323|          <p class="section-desc">The best places to discover, buy, and play games across every device.</p>
+324|        </div>
+325|        <div class="platforms-play-grid">
+326|          <div class="play-card reveal">
+            <img class="platform-logo" src="https://www.google.com/s2/favicons?domain=steampowered.com&sz=64" alt="Steam">
+328|            <h3>Steam</h3>
+329|            <p>The largest PC gaming platform with 50,000+ games, frequent sales, and community features.</p>
+330|          </div>
+331|          <div class="play-card reveal">
+            <span class="platform-logo">Epic</span>
+333|            <h3>Epic Games Store</h3>
+334|            <p>Weekly free games, exclusive titles, and Unreal Engine integration for creators.</p>
+335|          </div>
+336|          <div class="play-card reveal">
+            <span class="platform-logo">Xbox</span>
+338|            <h3>Xbox Game Pass</h3>
+339|            <p>Netflix for games! Hundreds of titles for one monthly fee, including day-one releases.</p>
+340|          </div>
+341|          <div class="play-card reveal">
+            <span class="platform-logo">PlayStation</span>
+343|            <h3>PlayStation Plus</h3>
+344|            <p>Online multiplayer, monthly free games, and a growing catalog of PS4 &amp; PS5 titles.</p>
+345|          </div>
+346|          <div class="play-card reveal">
+            <span class="platform-logo">Nintendo</span>
+348|            <h3>Nintendo eShop</h3>
+349|            <p>Home to Mario, Zelda, Pokémon, and thousands of indie gems on the Nintendo Switch.</p>
+350|          </div>
+351|          <div class="play-card reveal">
+            <span class="platform-logo">Mobile</span>
+353|            <h3>Mobile Gaming</h3>
+354|            <p>Google Play &amp; App Store offer millions of games — from puzzle games to full AAA ports.</p>
+355|          </div>
+356|          <div class="play-card reveal">
+            <span class="platform-logo">Cloud</span>
+358|            <h3>Cloud Gaming</h3>
+359|            <p>Services like GeForce NOW, Xbox Cloud, and Luna let you stream games without a powerful PC!</p>
+360|          </div>
+361|          <div class="play-card reveal">
+            <span class="platform-logo">itch.io</span>
+363|            <h3>itch.io</h3>
+364|            <p>An indie game marketplace with unique experimental titles you won't find anywhere else.</p>
+365|          </div>
+366|        </div>
+367|      </div>
+368|    </section>
+369|
+370|    <!-- ═══ RPG MINIGAME ═══ -->
+371|    <section id="rpg-section">
+372|      <div class="container">
+373|        <div class="section-header reveal">
+374|          <div class="section-tag">Play Now</div>
+375|          <h2 class="section-title">Mini <span class="accent">RPG Adventure</span></h2>
+376|          <p class="section-desc">A top-down dungeon crawler — collect coins, avoid enemies, and survive as long as you can!</p>
+377|        </div>
+378|        <div class="rpg-wrapper">
+379|          <div class="rpg-hud">
+380|            <div class="rpg-hud-item">
+381|              <span class="label">Score</span>
+382|              <span class="value" id="rpg-score">0</span>
+383|            </div>
+384|            <div class="rpg-hud-item">
+385|              <span class="label">HP</span>
+386|              <span class="value" id="rpg-health">100</span>
+387|            </div>
+388|            <div class="rpg-hud-item">
+389|              <span class="label">Level</span>
+390|              <span class="value" id="rpg-level">1</span>
+391|            </div>
+392|          </div>
+393|          <div class="rpg-canvas-container">
+394|            <canvas id="rpg-canvas"></canvas>
+395|          </div>
+396|          <p class="rpg-controls-hint">
+397|            Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> to move &bull; Collect coins &bull; Avoid enemies &bull; Clear all coins to advance!
+398|          </p>
+399|        </div>
+400|      </div>
+401|    </section>
+402|
+403|    <!-- ═══ NEWSLETTER ═══ -->
+404|    <section>
+405|      <div class="container">
+406|        <div class="newsletter reveal">
+407|          <h2>Join the Gameverse</h2>
+408|          <p>Get weekly updates on the latest game releases, industry news, and exclusive content.</p>
+409|          <form class="newsletter-form" id="newsletterForm">
+410|            <input type="email" placeholder="Enter your email" required>
+411|            <button type="submit">Subscribe</button>
+412|          </form>
+413|        </div>
+414|      </div>
+415|    </section>
+416|
+417|    <!-- ═══ FOOTER ═══ -->
+418|    <footer>
+419|      <div class="container">
+420|        <ul class="footer-links">
+421|          <li><a href="#home">Home</a></li>
+422|          <li><a href="#facts">Fun Facts</a></li>
+423|          <li><a href="#games">Games</a></li>
+424|          <li><a href="#create">Create</a></li>
+425|          <li><a href="#play">Play</a></li>
+426|          <li><a href="#rpg-section">Mini RPG</a></li>
+427|        </ul>
+428|        <p>&copy; 2026 Gameverse. Built for gamers, by gamers. 🎮</p>
+429|      </div>
+430|    </footer>
+431|
+432|  </div><!-- /#main-content -->
+433|
+434|  <script src="script.js"></script>
+435|</body>
+436|</html>
+437|
