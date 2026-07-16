@@ -63,8 +63,11 @@
       });
   }
 
+  var registerCooldown = 0;
+
   function register(fullName, email, password) {
     if (!supabase) return showCardError('register', 'Auth system not loaded.');
+    if (registerCooldown > 0) return;
     var btn = document.querySelector('#register-form .auth-btn');
     btn.textContent = 'Creating...';
     btn.disabled = true;
@@ -76,23 +79,46 @@
       if (res.error) {
         var msg = res.error.message || '';
         if (res.error.status === 429 || msg.indexOf('429') !== -1) {
-          msg = 'Too many attempts. Please wait 60 seconds and try again.';
+          showCardError('register', 'Rate limited. Wait 5 minutes, or try logging in — you may already be registered.');
+          startRegisterCooldown(btn, 300);
+          return;
         }
         showCardError('register', msg);
       } else if (res.data.user && res.data.user.identities && res.data.user.identities.length === 0) {
-        showCardError('register', 'Account with this email already exists.');
+        showCardError('register', 'Account with this email already exists. Try logging in instead.');
       } else {
         showCardError('register', 'Account created! Switch to the Sign In tab to log in.', true);
         setTimeout(function () {
           document.getElementById('show-login-link').click();
-        }, 2500);
+        }, 2000);
       }
     }).catch(function (err) {
-      showCardError('register', 'Too many attempts. Please wait a moment and try again.');
+      showCardError('register', 'Network error. Try again in a moment.');
+      startRegisterCooldown(btn, 60);
     }).finally(function () {
-      btn.textContent = 'Create Account';
-      btn.disabled = false;
+      if (registerCooldown === 0) {
+        btn.textContent = 'Create Account';
+        btn.disabled = false;
+      }
     });
+  }
+
+  function startRegisterCooldown(btn, secs) {
+    registerCooldown = secs || 60;
+    btn.disabled = true;
+    var tick = function () {
+      if (registerCooldown <= 0) {
+        btn.textContent = 'Create Account';
+        btn.disabled = false;
+        return;
+      }
+      var m = Math.floor(registerCooldown / 60);
+      var s = registerCooldown % 60;
+      btn.textContent = 'Wait ' + (m > 0 ? m + 'm ' : '') + s + 's...';
+      registerCooldown--;
+      setTimeout(tick, 1000);
+    };
+    tick();
   }
 
   function logout() {
