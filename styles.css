@@ -681,53 +681,6 @@ section {
   margin-bottom: 12px;
 }
 
-.studio-logo {
-  display: inline-block;
-  height: 24px;
-  margin-bottom: 10px;
-}
-
-.studio-logo:not(img) {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--neon-cyan);
-  background: rgba(0, 240, 255, 0.08);
-  border: 1px solid rgba(0, 240, 255, 0.2);
-  border-radius: 4px;
-  padding: 4px 10px;
-  height: auto;
-}
-
-.platform-logo {
-  display: inline-block;
-  height: 32px;
-  margin-bottom: 12px;
-  transition: all 0.3s;
-}
-
-.platform-logo:not(img) {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--glass-border);
-  border-radius: 6px;
-  padding: 6px 14px;
-  height: auto;
-}
-
-.platform-card:hover .platform-logo,
-.play-card:hover .platform-logo {
-  border-color: var(--neon-cyan);
-  color: var(--neon-cyan);
-  background: rgba(0, 240, 255, 0.06);
-}
-
 .game-card-body p {
   color: var(--text-secondary);
   font-size: 0.9rem;
