@@ -834,8 +834,19 @@
     initScrollReveal();
     initNewsletter();
     initSmoothScroll();
-    initRPG();
+    // RPG starts after auth — see showMainContent()
   }
+
+  var rpgStarted = false;
+  var origShowMainContent = showMainContent;
+  showMainContent = function () {
+    origShowMainContent();
+    if (!rpgStarted) {
+      rpgStarted = true;
+      // Small delay so the DOM is painted before canvas sizing
+      setTimeout(initRPG, 100);
+    }
+  };
 
   // Bootstrap: load Supabase → init auth → then init everything else
   loadSupabase(function () {
