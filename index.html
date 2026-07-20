@@ -6,6 +6,7 @@
   <title>GAMEVERSE — The Future of Gaming</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="feedback.css">
 </head>
 <body>
 
@@ -425,6 +426,56 @@
 
   </div><!-- /#main-content -->
 
+  <!-- ═══ SIDE PANEL ═══ -->
+  <div id="side-panel">
+    <div class="sp-overlay" id="sp-overlay"></div>
+    <div class="sp-drawer" id="sp-drawer">
+      <div class="sp-tabs">
+        <button class="sp-tab active" data-tab="feedback">💬 Feedback</button>
+        <button class="sp-tab" data-tab="ai">🤖 Ask AI</button>
+        <button class="sp-close" id="sp-close">&times;</button>
+      </div>
+      <div class="sp-content active" id="sp-feedback">
+        <h3>Share Your Ideas</h3>
+        <p class="sp-hint">Got feedback, suggestions, or bug reports? We'd love to hear from you.</p>
+        <form id="feedback-form" autocomplete="off">
+          <label for="fb-name">Name</label>
+          <input type="text" id="fb-name" placeholder="Your name (optional)">
+          <label for="fb-email">Email</label>
+          <input type="email" id="fb-email" placeholder="your@email.com (optional)">
+          <label for="fb-type">Type</label>
+          <select id="fb-type">
+            <option value="suggestion">Suggestion</option>
+            <option value="bug">Bug Report</option>
+            <option value="idea">Game Idea</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="fb-message">Message</label>
+          <textarea id="fb-message" rows="4" placeholder="Tell us what's on your mind..." required></textarea>
+          <button type="submit" class="sp-btn">Send Feedback</button>
+        </form>
+        <div class="sp-success" id="fb-success">✓ Thanks for your feedback!</div>
+      </div>
+      <div class="sp-content" id="sp-ai">
+        <h3>Ask About Gameverse</h3>
+        <p class="sp-hint">Ask me anything about the website — games, facts, platforms, or how to get started.</p>
+        <div class="sp-chat" id="sp-chat">
+          <div class="sp-msg bot">
+            <span class="sp-avatar">🤖</span>
+            <div class="sp-bubble">Hey! I'm the Gameverse AI assistant. I know all about the games, facts, and platforms on this site. Ask me anything!</div>
+          </div>
+        </div>
+        <div class="sp-chat-input">
+          <input type="text" id="sp-prompt" placeholder="Ask a question..." autocomplete="off">
+          <button id="sp-send">Send</button>
+        </div>
+        <p class="sp-disclaimer">Powered by AI — responses may not always be perfect.</p>
+      </div>
+    </div>
+  </div>
+  <button id="sp-toggle" title="Feedback & AI Chat">💬</button>
+
   <script src="script.js"></script>
+  <script src="feedback.js"></script>
 </body>
 </html>
