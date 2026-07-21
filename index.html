@@ -367,8 +367,8 @@
       <div class="container">
         <div class="section-header reveal">
           <div class="section-tag">Play Now</div>
-          <h2 class="section-title">Mini <span class="accent">RPG Adventure</span></h2>
-          <p class="section-desc">A top-down dungeon crawler — collect coins, avoid enemies, and survive as long as you can!</p>
+          <h2 class="section-title">Multiplayer <span class="accent">RPG World</span></h2>
+          <p class="section-desc">Explore, build, and survive with other players in real-time — Minecraft-style!</p>
         </div>
         <div class="rpg-wrapper">
           <div class="rpg-hud">
@@ -384,12 +384,31 @@
               <span class="label">Level</span>
               <span class="value" id="rpg-level">1</span>
             </div>
+            <div class="rpg-hud-item">
+              <span class="label">Mode</span>
+              <span class="value" id="rpg-mode">Explore</span>
+            </div>
           </div>
-          <div class="rpg-canvas-container">
-            <canvas id="rpg-canvas"></canvas>
+          <div class="rpg-layout">
+            <div class="rpg-canvas-container">
+              <canvas id="rpg-canvas"></canvas>
+            </div>
+            <div class="rpg-sidebar">
+              <div class="rpg-players-box">
+                <h4>Players Online</h4>
+                <ul id="rpg-player-list"><li>Loading...</li></ul>
+              </div>
+              <div class="rpg-chat-box">
+                <div class="rpg-chat-msgs" id="rpg-chat-msgs"></div>
+                <div class="rpg-chat-input">
+                  <input type="text" id="rpg-chat-input" placeholder="Chat..." maxlength="80" autocomplete="off">
+                  <button id="rpg-chat-send">Send</button>
+                </div>
+              </div>
+            </div>
           </div>
           <p class="rpg-controls-hint">
-            Use <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> to move &bull; Collect coins &bull; Avoid enemies &bull; Clear all coins to advance!
+            <kbd>WASD</kbd> move &bull; <kbd>Click</kbd> place block &bull; <kbd>Right-click</kbd> destroy &bull; <kbd>1-4</kbd> select block &bull; <kbd>Enter</kbd> chat &bull; <kbd>R</kbd> restart
           </p>
         </div>
       </div>
